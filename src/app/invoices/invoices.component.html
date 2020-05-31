@@ -1,0 +1,38 @@
+<mat-table [dataSource]="invoices">
+  <ng-container matColumnDef="no">
+    <mat-header-cell *matHeaderCellDef>Numer faktury</mat-header-cell>
+    <mat-cell *matCellDef="let invoice"> {{ invoice.no }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="forContractor">
+    <mat-header-cell *matHeaderCellDef>Kontrahent</mat-header-cell>
+    <mat-cell *matCellDef="let invoice"> {{ invoice.forContractor }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="invoiceDate">
+    <mat-header-cell *matHeaderCellDef>Data wystawienia</mat-header-cell>
+    <mat-cell *matCellDef="let invoice">
+      {{ invoice.invoiceDate | date: "dd/MM/yyyy" }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="dueDate">
+    <mat-header-cell *matHeaderCellDef>Termin płatności</mat-header-cell>
+    <mat-cell *matCellDef="let invoice">
+      {{ invoice.dueDate | date: "dd/MM/yyyy" }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="netAmount">
+    <mat-header-cell *matHeaderCellDef>Kwota netto</mat-header-cell>
+    <mat-cell *matCellDef="let invoice"> {{ invoice.netAmount }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="vatPercent">
+    <mat-header-cell *matHeaderCellDef>VAT</mat-header-cell>
+    <mat-cell *matCellDef="let invoice"> {{ invoice.vatPercent }} %</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+  <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+</mat-table>
