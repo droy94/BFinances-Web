@@ -6,6 +6,8 @@ import { AppComponent } from "./app.component";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { InvoicesComponent } from "./invoices/invoices.component";
 import { MatTableModule } from "@angular/material/table";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
   declarations: [AppComponent, InvoicesComponent],
@@ -14,6 +16,8 @@ import { MatTableModule } from "@angular/material/table";
     AppRoutingModule,
     NoopAnimationsModule,
     MatTableModule,
+    MatToolbarModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
