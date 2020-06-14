@@ -10,9 +10,13 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material";
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatAutocompleteModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+} from "@angular/material";
 
 import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
 
@@ -30,6 +34,8 @@ import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

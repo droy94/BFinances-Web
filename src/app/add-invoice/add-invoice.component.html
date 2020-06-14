@@ -17,4 +17,19 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Data wystawienia faktury</mat-label>
+    <input
+      matInput
+      [matDatepicker]="invoicePicker"
+      [formControl]="invoiceDateControl"
+      disabled
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="invoicePicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #invoicePicker disabled="false"></mat-datepicker>
+  </mat-form-field>
 </form>

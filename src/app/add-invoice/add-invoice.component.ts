@@ -27,7 +27,7 @@ export class AddInvoiceComponent implements OnInit {
   filtredContractors: Observable<Contractor[]>;
 
   forContractorControl = new FormControl("");
-  invoiceDateControl = new FormControl("");
+  invoiceDateControl = new FormControl(null);
   dueDateControl = new FormControl("");
   saleDateControl = new FormControl("");
   netAmountControl = new FormControl("");
