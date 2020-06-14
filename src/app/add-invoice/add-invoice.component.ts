@@ -28,8 +28,8 @@ export class AddInvoiceComponent implements OnInit {
 
   forContractorControl = new FormControl("");
   invoiceDateControl = new FormControl(null);
-  dueDateControl = new FormControl("");
-  saleDateControl = new FormControl("");
+  dueDateControl = new FormControl(null);
+  saleDateControl = new FormControl(null);
   netAmountControl = new FormControl("");
   grossAmountControl = new FormControl("");
   vatPercentControl = new FormControl("");

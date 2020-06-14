@@ -1,35 +1,70 @@
 <form [formGroup]="addInvoiceForm">
-  <mat-form-field appearance="outline">
-    <mat-label>Nazwa nabywcy</mat-label>
-    <input
-      type="text"
-      matInput
-      placeholder="Nazwa nabywcy"
-      [formControl]="forContractorControl"
-      [matAutocomplete]="auto"
-    />
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayContractor">
-      <mat-option
-        *ngFor="let contractor of filtredContractors | async"
-        [value]="contractor"
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Nazwa nabywcy</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Nazwa nabywcy"
+        [formControl]="forContractorControl"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="displayContractor"
       >
-        {{ contractor.name }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+        <mat-option
+          *ngFor="let contractor of filtredContractors | async"
+          [value]="contractor"
+        >
+          {{ contractor.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Data wystawienia faktury</mat-label>
-    <input
-      matInput
-      [matDatepicker]="invoicePicker"
-      [formControl]="invoiceDateControl"
-      disabled
-    />
-    <mat-datepicker-toggle
-      matSuffix
-      [for]="invoicePicker"
-    ></mat-datepicker-toggle>
-    <mat-datepicker #invoicePicker disabled="false"></mat-datepicker>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Data wystawienia faktury</mat-label>
+      <input
+        matInput
+        [matDatepicker]="invoicePicker"
+        [formControl]="invoiceDateControl"
+        disabled
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="invoicePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #invoicePicker disabled="false"></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Data spłaty</mat-label>
+      <input
+        matInput
+        [matDatepicker]="duePicker"
+        [formControl]="dueDateControl"
+        disabled
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="duePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #duePicker disabled="false"></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Data sprzedaży</mat-label>
+      <input
+        matInput
+        [matDatepicker]="salePicker"
+        [formControl]="saleDateControl"
+        disabled
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="salePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #salePicker disabled="false"></mat-datepicker>
+    </mat-form-field>
+  </div>
 </form>
