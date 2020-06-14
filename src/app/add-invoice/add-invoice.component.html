@@ -1,0 +1,20 @@
+<form [formGroup]="addInvoiceForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Nazwa nabywcy</mat-label>
+    <input
+      type="text"
+      matInput
+      placeholder="Nazwa nabywcy"
+      [formControl]="forContractorControl"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayContractor">
+      <mat-option
+        *ngFor="let contractor of filtredContractors | async"
+        [value]="contractor"
+      >
+        {{ contractor.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

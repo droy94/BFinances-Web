@@ -1,7 +1,7 @@
 <mat-table [dataSource]="invoices">
-  <ng-container matColumnDef="no">
+  <ng-container matColumnDef="number">
     <mat-header-cell *matHeaderCellDef>Numer faktury</mat-header-cell>
-    <mat-cell *matCellDef="let invoice"> {{ invoice.no }} </mat-cell>
+    <mat-cell *matCellDef="let invoice"> {{ invoice.number }} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="forContractor">

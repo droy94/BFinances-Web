@@ -1,15 +1,11 @@
 <!-- base view -->
-
-<!-- zmienić kolor -->
-<mat-toolbar color="accent">
-  <span>BFinances</span>
-</mat-toolbar>
-
 <!-- dać tu flexa -->
 <mat-toolbar color="primary">
-  <nav>
-    <a mat-raised-button routerLink="/invoices">Faktury</a>
-  </nav>
+  <span>BFinances</span>
+  <div class="navbar">
+    <a mat-button routerLink="/invoices" color="accent">Faktury</a>
+    <a mat-button routerLink="/addinvoice" color="accent">Dodaj fakturę</a>
+  </div>
 </mat-toolbar>
 
 <!-- base view end -->

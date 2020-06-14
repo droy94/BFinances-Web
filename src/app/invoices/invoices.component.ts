@@ -10,7 +10,7 @@ import { Invoice } from "../invoice";
 export class InvoicesComponent implements OnInit {
   invoices: Invoice[];
   columnsToDisplay = [
-    "no",
+    "number",
     "forContractor",
     "invoiceDate",
     "dueDate",

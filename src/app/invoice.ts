@@ -1,6 +1,6 @@
 export interface Invoice {
   id: number;
-  no: string;
+  number: string;
   fromContractor: string;
   forContractor: string;
   invoiceDate: Date;
@@ -10,6 +10,6 @@ export interface Invoice {
   grossAmount: number;
   vatPercent: number;
   numberOfUnits: number;
-  unit: string;
+  unitName: string;
   pkwiu: string;
 }
