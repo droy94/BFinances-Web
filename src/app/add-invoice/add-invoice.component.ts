@@ -1,3 +1,4 @@
+import { Pkwiu } from "./../pkwiu";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { FormBuilder } from "@angular/forms";
@@ -24,7 +25,21 @@ export class AddInvoiceComponent implements OnInit {
     },
   ];
 
+  possiblePkwiu: Pkwiu[] = [
+    {
+      id: 1,
+      code: "6.2.1",
+      name: "eksport produktów nieoclonych",
+    },
+    {
+      id: 2,
+      code: "6.2.2",
+      name: "eksport produktów oclonych",
+    },
+  ];
+
   filtredContractors: Observable<Contractor[]>;
+  filtredPkwiu: Observable<Pkwiu[]>;
 
   forContractorControl = new FormControl("");
   invoiceDateControl = new FormControl(null);
@@ -44,7 +59,15 @@ export class AddInvoiceComponent implements OnInit {
       startWith(""),
       map((value) => (typeof value === "string" ? value : value.name)),
       map((name) =>
-        name ? this._filter(name) : this.possibleContractors.slice()
+        name ? this._filterContractor(name) : this.possibleContractors.slice()
+      )
+    );
+
+    this.filtredPkwiu = this.pkwiuControl.valueChanges.pipe(
+      startWith(""),
+      map((value) => (typeof value === "string" ? value : value.name)),
+      map((name) =>
+        name ? this._filterPkwiu(name) : this.possiblePkwiu.slice()
       )
     );
   }
@@ -66,12 +89,24 @@ export class AddInvoiceComponent implements OnInit {
     return contractor && contractor.name ? contractor.name : "";
   }
 
-  private _filter(name: string): Contractor[] {
+  displayPkwiu(pkwiu: Pkwiu): string {
+    return pkwiu && pkwiu.name ? pkwiu.name : "";
+  }
+
+  private _filterContractor(name: string): Contractor[] {
     const filterValue = name.toLocaleLowerCase();
 
     return this.possibleContractors.filter(
       (contractor) =>
         contractor.name.toLocaleLowerCase().indexOf(filterValue) === 0
+    );
+  }
+
+  private _filterPkwiu(name: string): Pkwiu[] {
+    const filterValue = name.toLocaleLowerCase();
+
+    return this.possiblePkwiu.filter(
+      (pkwiu) => pkwiu.name.toLocaleLowerCase().indexOf(filterValue) === 0
     );
   }
 }
