@@ -110,13 +110,13 @@
     <input
       type="text"
       matInput
-      placeholder="Nazwa jednostki"
+      placeholder="Kod pkwiu"
       [formControl]="pkwiuControl"
       [matAutocomplete]="auto"
     />
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayPkwiu">
       <mat-option *ngFor="let pkwiu of filtredPkwiu | async" [value]="pkwiu">
-        {{ pkwiu.name }}
+        {{ pkwiu.code }}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

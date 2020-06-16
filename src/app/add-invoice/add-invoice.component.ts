@@ -1,3 +1,4 @@
+import { PkwiuService } from "./../pkwiu.service";
 import { Pkwiu } from "./../pkwiu";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
@@ -5,6 +6,7 @@ import { FormBuilder } from "@angular/forms";
 import { Contractor } from "../contractor";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
+import { ContractorService } from "../contractor.service";
 
 @Component({
   selector: "app-add-invoice",
@@ -12,31 +14,8 @@ import { map, startWith } from "rxjs/operators";
   styleUrls: ["./add-invoice.component.scss"],
 })
 export class AddInvoiceComponent implements OnInit {
-  possibleContractors: Contractor[] = [
-    {
-      id: 1,
-      name: "Microsoft",
-      nip: "5272830123",
-    },
-    {
-      id: 2,
-      name: "Google",
-      nip: "5552830123",
-    },
-  ];
-
-  possiblePkwiu: Pkwiu[] = [
-    {
-      id: 1,
-      code: "6.2.1",
-      name: "eksport produktów nieoclonych",
-    },
-    {
-      id: 2,
-      code: "6.2.2",
-      name: "eksport produktów oclonych",
-    },
-  ];
+  possibleContractors: Contractor[] = [];
+  possiblePkwiu: Pkwiu[] = [];
 
   filtredContractors: Observable<Contractor[]>;
   filtredPkwiu: Observable<Pkwiu[]>;
@@ -52,9 +31,16 @@ export class AddInvoiceComponent implements OnInit {
   unitNameControl = new FormControl("");
   pkwiuControl = new FormControl("");
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private contractorService: ContractorService,
+    private pkwiuService: PkwiuService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
+    this.getContractors();
+    this.getPkwiu();
+
     this.filtredContractors = this.forContractorControl.valueChanges.pipe(
       startWith(""),
       map((value) => (typeof value === "string" ? value : value.name)),
@@ -90,7 +76,7 @@ export class AddInvoiceComponent implements OnInit {
   }
 
   displayPkwiu(pkwiu: Pkwiu): string {
-    return pkwiu && pkwiu.name ? pkwiu.name : "";
+    return pkwiu && pkwiu.code ? pkwiu.code : "";
   }
 
   private _filterContractor(name: string): Contractor[] {
@@ -108,5 +94,17 @@ export class AddInvoiceComponent implements OnInit {
     return this.possiblePkwiu.filter(
       (pkwiu) => pkwiu.name.toLocaleLowerCase().indexOf(filterValue) === 0
     );
+  }
+
+  getContractors() {
+    this.contractorService
+      .getContractors()
+      .subscribe((contractors) => (this.possibleContractors = contractors));
+  }
+
+  getPkwiu() {
+    this.pkwiuService
+      .getPkwiu()
+      .subscribe((pkwiu) => (this.possiblePkwiu = pkwiu));
   }
 }
