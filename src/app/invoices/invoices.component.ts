@@ -16,6 +16,7 @@ export class InvoicesComponent implements OnInit {
     "dueDate",
     "netAmount",
     "vatPercent",
+    "pkwiu",
   ];
 
   constructor(private invoiceService: InvoiceService) {}

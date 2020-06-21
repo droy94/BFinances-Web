@@ -6,7 +6,16 @@
 
   <ng-container matColumnDef="forContractor">
     <mat-header-cell *matHeaderCellDef>Kontrahent</mat-header-cell>
-    <mat-cell *matCellDef="let invoice"> {{ invoice.forContractor }} </mat-cell>
+    <mat-cell *matCellDef="let invoice">
+      {{ invoice.forContractor.name }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="pkwiu">
+    <mat-header-cell *matHeaderCellDef>Pkwiu</mat-header-cell>
+    <mat-cell *matCellDef="let invoice">
+      {{ invoice.pkwiu.code }}
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="invoiceDate">

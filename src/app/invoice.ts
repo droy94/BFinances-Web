@@ -1,15 +1,15 @@
+import { Pkwiu } from "./pkwiu";
+import { Contractor } from "./contractor";
 export interface Invoice {
   id: number;
   number: string;
-  fromContractor: string;
-  forContractor: string;
+  forContractor: Contractor;
   invoiceDate: Date;
   dueDate: Date;
   saleDate: Date;
   netAmount: number;
-  grossAmount: number;
   vatPercent: number;
   numberOfUnits: number;
   unitName: string;
-  pkwiu: string;
+  pkwiu: Pkwiu;
 }

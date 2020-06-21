@@ -27,7 +27,6 @@ export class AddInvoiceComponent implements OnInit {
   dueDateControl = new FormControl(null);
   saleDateControl = new FormControl(null);
   netAmountControl = new FormControl("");
-  grossAmountControl = new FormControl("");
   vatPercentControl = new FormControl("");
   numberOfUnitsControl = new FormControl("");
   unitNameControl = new FormControl("");
@@ -67,7 +66,6 @@ export class AddInvoiceComponent implements OnInit {
     dueDate: this.dueDateControl,
     saleDate: this.saleDateControl,
     netAmount: this.netAmountControl,
-    grossAmount: this.grossAmountControl,
     vatPercent: this.vatPercentControl,
     numberOfUnits: this.numberOfUnitsControl,
     unitName: this.unitNameControl,
@@ -111,11 +109,29 @@ export class AddInvoiceComponent implements OnInit {
       .subscribe((pkwiu) => (this.possiblePkwiu = pkwiu));
   }
 
-  // Pytanie czy tu potrzeba przekazać input na listę faktur
-  // addInvoice(invoice: Invoice){
-  //   this.invoiceService
-  //   .addInvoice(invoice)
-  //   .subscribe(invoice => )
+  addInvoice() {
+    const invoice = this.mapInvoice();
 
-  // }
+    this.invoiceService
+      .addInvoice(invoice)
+      .subscribe(() => alert("Invoice created successfully"));
+  }
+
+  private mapInvoice(): Invoice {
+    const invoice: Invoice = {
+      id: 0,
+      number: null,
+      forContractor: this.addInvoiceForm.get("forContractor").value,
+      invoiceDate: this.addInvoiceForm.get("invoiceDate").value,
+      dueDate: this.addInvoiceForm.get("dueDate").value,
+      saleDate: this.addInvoiceForm.get("saleDate").value,
+      netAmount: Number(this.addInvoiceForm.get("netAmount").value),
+      vatPercent: Number(this.addInvoiceForm.get("vatPercent").value),
+      numberOfUnits: Number(this.addInvoiceForm.get("numberOfUnits").value),
+      unitName: this.addInvoiceForm.get("unitName").value,
+      pkwiu: this.addInvoiceForm.get("pkwiu").value,
+    };
+
+    return invoice;
+  }
 }

@@ -1,4 +1,4 @@
-<form [formGroup]="addInvoiceForm">
+<form [formGroup]="addInvoiceForm" (ngSubmit)="addInvoice(addInvoiceForm)">
   <mat-form-field appearance="outline">
     <mat-label>Nazwa nabywcy</mat-label>
     <input
@@ -71,16 +71,6 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Kwota brutto</mat-label>
-    <input
-      matInput
-      placeholder="Kwota brutto"
-      [formControl]="grossAmountControl"
-    />
-    <span matSuffix>PLN</span>
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
     <mat-label>Wysokość VAT</mat-label>
     <input
       matInput
@@ -123,4 +113,6 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
+
+  <button type="submit" mat-button>Zatwierdź</button>
 </form>
