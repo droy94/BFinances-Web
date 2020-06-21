@@ -7,6 +7,8 @@ import { Contractor } from "../contractor";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
 import { ContractorService } from "../contractor.service";
+import { Invoice } from "../invoice";
+import { InvoiceService } from "../invoice.service";
 
 @Component({
   selector: "app-add-invoice",
@@ -34,7 +36,8 @@ export class AddInvoiceComponent implements OnInit {
   constructor(
     private contractorService: ContractorService,
     private pkwiuService: PkwiuService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private invoiceService: InvoiceService
   ) {}
 
   ngOnInit() {
@@ -88,11 +91,11 @@ export class AddInvoiceComponent implements OnInit {
     );
   }
 
-  private _filterPkwiu(name: string): Pkwiu[] {
-    const filterValue = name.toLocaleLowerCase();
+  private _filterPkwiu(code: string): Pkwiu[] {
+    const filterValue = code.toLocaleLowerCase();
 
     return this.possiblePkwiu.filter(
-      (pkwiu) => pkwiu.name.toLocaleLowerCase().indexOf(filterValue) === 0
+      (pkwiu) => pkwiu.code.toLocaleLowerCase().indexOf(filterValue) === 0
     );
   }
 
@@ -107,4 +110,12 @@ export class AddInvoiceComponent implements OnInit {
       .getPkwiu()
       .subscribe((pkwiu) => (this.possiblePkwiu = pkwiu));
   }
+
+  // Pytanie czy tu potrzeba przekazać input na listę faktur
+  // addInvoice(invoice: Invoice){
+  //   this.invoiceService
+  //   .addInvoice(invoice)
+  //   .subscribe(invoice => )
+
+  // }
 }

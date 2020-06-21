@@ -6,9 +6,12 @@
       matInput
       placeholder="Nazwa nabywcy"
       [formControl]="forContractorControl"
-      [matAutocomplete]="auto"
+      [matAutocomplete]="autoContractor"
     />
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayContractor">
+    <mat-autocomplete
+      #autoContractor="matAutocomplete"
+      [displayWith]="displayContractor"
+    >
       <mat-option
         *ngFor="let contractor of filtredContractors | async"
         [value]="contractor"
@@ -112,9 +115,9 @@
       matInput
       placeholder="Kod pkwiu"
       [formControl]="pkwiuControl"
-      [matAutocomplete]="auto"
+      [matAutocomplete]="autoPkwiu"
     />
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayPkwiu">
+    <mat-autocomplete #autoPkwiu="matAutocomplete" [displayWith]="displayPkwiu">
       <mat-option *ngFor="let pkwiu of filtredPkwiu | async" [value]="pkwiu">
         {{ pkwiu.code }}
       </mat-option>
