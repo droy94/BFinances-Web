@@ -1,6 +1,6 @@
-import { InvoiceService } from "./../invoice.service";
+import { InvoiceService } from "../services/invoice.service";
 import { Component, OnInit } from "@angular/core";
-import { Invoice } from "../invoice";
+import { Invoice } from "../model/invoice";
 
 @Component({
   selector: "app-invoices",

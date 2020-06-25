@@ -4,8 +4,16 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
-  { path: "invoices", component: InvoicesComponent },
-  { path: "addinvoice", component: AddInvoiceComponent },
+  {
+    path: "invoices",
+    component: InvoicesComponent,
+    data: { breadcrumb: "Faktury" },
+  },
+  {
+    path: "addinvoice",
+    component: AddInvoiceComponent,
+    data: { breadcrumb: "Dodaj fakturę" },
+  },
   { path: "", redirectTo: "/invoices", pathMatch: "full" },
 ];
 

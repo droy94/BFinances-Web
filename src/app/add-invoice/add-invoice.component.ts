@@ -1,14 +1,14 @@
-import { PkwiuService } from "./../pkwiu.service";
-import { Pkwiu } from "./../pkwiu";
+import { PkwiuService } from "../services/pkwiu.service";
+import { Pkwiu } from "../model/pkwiu";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { FormBuilder } from "@angular/forms";
-import { Contractor } from "../contractor";
+import { Contractor } from "../model/contractor";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
-import { ContractorService } from "../contractor.service";
-import { Invoice } from "../invoice";
-import { InvoiceService } from "../invoice.service";
+import { ContractorService } from "../services/contractor.service";
+import { Invoice } from "../model/invoice";
+import { InvoiceService } from "../services/invoice.service";
 
 @Component({
   selector: "app-add-invoice",

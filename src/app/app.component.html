@@ -1,13 +1,32 @@
-<!-- base view -->
-<!-- dać tu flexa -->
 <mat-toolbar color="primary">
-  <span>BFinances</span>
+  <img src="assets/img/logo.png" alt="image" width="30px" height="30px" />
+  <span>inances</span>
   <div class="navbar">
+    <a mat-button color="accent">Pulpit</a>
     <a mat-button routerLink="/invoices" color="accent">Faktury</a>
     <a mat-button routerLink="/addinvoice" color="accent">Dodaj fakturę</a>
+    <a mat-button color="accent">Przychody</a>
+    <a mat-button color="accent">Koszty</a>
+    <a mat-button color="accent">Podatki</a>
+    <a mat-button color="accent">O nas</a>
   </div>
+  <p>DanyRoy</p>
+  <mat-icon aria-hidden="false" aria-label="Example home icon"
+    >details</mat-icon
+  >
 </mat-toolbar>
 
-<!-- base view end -->
+<breadcrumb #parent>
+  <ol class="breadcrumb">
+    <ng-template ngFor let-route [ngForOf]="parent.breadcrumbs">
+      <li *ngIf="!route.terminal" class="breadcrumb-item">
+        <a href="" [routerLink]="[route.url]">{{ route.displayName }}</a>
+      </li>
+      <li *ngIf="route.terminal" class="breadcrumb-item active">
+        {{ route.displayName }}
+      </li>
+    </ng-template>
+  </ol>
+</breadcrumb>
 
 <router-outlet></router-outlet>

@@ -10,6 +10,8 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MatIconModule } from "@angular/material/icon";
+import { BreadcrumbModule } from "angular-crumbs";
 import {
   MatFormFieldModule,
   MatInputModule,
@@ -36,6 +38,8 @@ import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
     MatAutocompleteModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatIconModule,
+    BreadcrumbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,11 +1,11 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { PkwiuService } from './pkwiu.service';
+import { PkwiuService } from "./pkwiu.service";
 
-describe('PkwiuService', () => {
+describe("PkwiuService", () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
+  it("should be created", () => {
     const service: PkwiuService = TestBed.get(PkwiuService);
     expect(service).toBeTruthy();
   });
