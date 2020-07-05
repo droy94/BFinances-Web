@@ -9,6 +9,7 @@ import { map, startWith } from "rxjs/operators";
 import { ContractorService } from "../services/contractor.service";
 import { Invoice } from "../model/invoice";
 import { InvoiceService } from "../services/invoice.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-add-invoice",
@@ -36,7 +37,8 @@ export class AddInvoiceComponent implements OnInit {
     private contractorService: ContractorService,
     private pkwiuService: PkwiuService,
     private formBuilder: FormBuilder,
-    private invoiceService: InvoiceService
+    private invoiceService: InvoiceService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -58,6 +60,16 @@ export class AddInvoiceComponent implements OnInit {
         name ? this._filterPkwiu(name) : this.possiblePkwiu.slice()
       )
     );
+
+    this.route.paramMap.subscribe((params) => {
+      const invoiceId = +params.get("id");
+
+      if (invoiceId) {
+        this.invoiceService
+          .getInvoice(invoiceId)
+          .subscribe((invoice) => this.fulfillInvoiceForm(invoice));
+      }
+    });
   }
 
   addInvoiceForm = this.formBuilder.group({
@@ -133,5 +145,19 @@ export class AddInvoiceComponent implements OnInit {
     };
 
     return invoice;
+  }
+
+  fulfillInvoiceForm(invoice: Invoice) {
+    this.addInvoiceForm.patchValue({
+      forContractor: invoice.forContractor,
+      invoiceDate: invoice.invoiceDate,
+      dueDate: invoice.dueDate,
+      saleDate: invoice.saleDate,
+      netAmount: invoice.netAmount,
+      vatPercent: invoice.vatPercent,
+      numberOfUnits: invoice.numberOfUnits,
+      unitName: invoice.unitName,
+      pkwiu: invoice.pkwiu,
+    });
   }
 }

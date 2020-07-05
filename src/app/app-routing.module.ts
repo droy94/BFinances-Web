@@ -14,6 +14,11 @@ const routes: Routes = [
     component: AddInvoiceComponent,
     data: { breadcrumb: "Dodaj fakturę" },
   },
+  {
+    path: "editInvoice/:id",
+    component: AddInvoiceComponent,
+    data: { breadcrumb: "Edycja faktury" },
+  },
   { path: "", redirectTo: "/invoices", pathMatch: "full" },
 ];
 

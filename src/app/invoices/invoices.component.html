@@ -2,7 +2,10 @@
   <mat-table [dataSource]="invoices">
     <ng-container matColumnDef="number">
       <mat-header-cell *matHeaderCellDef>Numer faktury</mat-header-cell>
-      <mat-cell *matCellDef="let invoice" routerLink="/detail/{{ invoice.id }}">
+      <mat-cell
+        *matCellDef="let invoice"
+        routerLink="/editInvoice/{{ invoice.id }}"
+      >
         {{ invoice.number }}
       </mat-cell>
     </ng-container>

@@ -20,9 +20,21 @@ export class InvoiceService {
     return this.httpClient.get<Invoice[]>(this.invoicesUrl);
   }
 
+  getInvoice(id: number): Observable<Invoice> {
+    return this.httpClient.get<Invoice>(`${this.invoicesUrl}/${id}`);
+  }
+
   addInvoice(invoice: Invoice) {
     return this.httpClient.post<Invoice>(
       this.invoicesUrl,
+      invoice,
+      this.httpOptions
+    );
+  }
+
+  editInvoice(invoice: Invoice, id: number) {
+    return this.httpClient.put<Invoice>(
+      `${this.invoicesUrl}/${id}`,
       invoice,
       this.httpOptions
     );

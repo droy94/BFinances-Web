@@ -21,9 +21,15 @@ import {
 } from "@angular/material";
 
 import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
+// import { EditInvoiceComponent } from './edit-invoice/edit-invoice.component';
 
 @NgModule({
-  declarations: [AppComponent, InvoicesComponent, AddInvoiceComponent],
+  declarations: [
+    AppComponent,
+    InvoicesComponent,
+    AddInvoiceComponent,
+    // EditInvoiceComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
