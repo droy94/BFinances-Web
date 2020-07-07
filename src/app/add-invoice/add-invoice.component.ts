@@ -121,6 +121,28 @@ export class AddInvoiceComponent implements OnInit {
       .subscribe((pkwiu) => (this.possiblePkwiu = pkwiu));
   }
 
+  onSubmit() {
+    this.route.paramMap.subscribe((params) => {
+      const invoiceId = +params.get("id");
+
+      if (invoiceId) {
+        this.invoiceService
+          .getInvoice(invoiceId)
+          .subscribe(() => this.editInvoice());
+      } else {
+        this.addInvoice();
+      }
+    });
+  }
+
+  editInvoice() {
+    const invoice = this.mapInvoice();
+
+    this.invoiceService
+      .editInvoice(invoice, invoice.id)
+      .subscribe(() => alert("Invoice edited successfully"));
+  }
+
   addInvoice() {
     const invoice = this.mapInvoice();
 
