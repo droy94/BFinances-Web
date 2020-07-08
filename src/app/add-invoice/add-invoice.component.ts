@@ -128,18 +128,18 @@ export class AddInvoiceComponent implements OnInit {
       if (invoiceId) {
         this.invoiceService
           .getInvoice(invoiceId)
-          .subscribe(() => this.editInvoice());
+          .subscribe(() => this.editInvoice(invoiceId));
       } else {
         this.addInvoice();
       }
     });
   }
 
-  editInvoice() {
+  editInvoice(invoiceId: number) {
     const invoice = this.mapInvoice();
 
     this.invoiceService
-      .editInvoice(invoice, invoice.id)
+      .editInvoice(invoice, invoiceId)
       .subscribe(() => alert("Invoice edited successfully"));
   }
 
