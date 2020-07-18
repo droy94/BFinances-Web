@@ -6,7 +6,7 @@
         type="text"
         matInput
         placeholder="Nazwa nabywcy"
-        [formControl]="forContractorControl"
+        formControlName="forContractor"
         [matAutocomplete]="autoContractor"
       />
       <mat-autocomplete
@@ -27,7 +27,7 @@
       <input
         matInput
         [matDatepicker]="invoicePicker"
-        [formControl]="invoiceDateControl"
+        formControlName="invoiceDate"
         disabled
       />
       <mat-datepicker-toggle
@@ -42,7 +42,7 @@
       <input
         matInput
         [matDatepicker]="duePicker"
-        [formControl]="dueDateControl"
+        formControlName="dueDate"
         disabled
       />
       <mat-datepicker-toggle
@@ -57,7 +57,7 @@
       <input
         matInput
         [matDatepicker]="salePicker"
-        [formControl]="saleDateControl"
+        formControlName="saleDate"
         disabled
       />
       <mat-datepicker-toggle
@@ -126,7 +126,7 @@
   </div>
 
   <div>
-    <button (click)="addItem()" mat-button>
+    <button type="button" (click)="addItem()" mat-button>
       Dodaj element
     </button>
   </div>

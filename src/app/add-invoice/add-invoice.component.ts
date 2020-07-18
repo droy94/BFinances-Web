@@ -1,3 +1,4 @@
+import { InvoiceItem } from "./../model/invoiceItem";
 import { PkwiuService } from "../services/pkwiu.service";
 import { Pkwiu } from "../model/pkwiu";
 import { Component, OnInit } from "@angular/core";
@@ -23,12 +24,12 @@ export class AddInvoiceComponent implements OnInit {
   filtredContractors: Observable<Contractor[]>;
   // filtredPkwiu: Observable<Pkwiu[]>;
 
-  forContractorControl = new FormControl("");
-  invoiceDateControl = new FormControl(null);
-  dueDateControl = new FormControl(null);
-  saleDateControl = new FormControl(null);
-  dueDaysControl = new FormControl(null);
-  netSumControl = new FormControl(null);
+  // forContractorControl = new FormControl("");
+  // invoiceDateControl = new FormControl(null);
+  // dueDateControl = new FormControl(null);
+  // saleDateControl = new FormControl(null);
+  // dueDaysControl = new FormControl(null);
+  // netSumControl = new FormControl(null);
   itemsControl = new FormArray([]);
   // pkwiuControl = new FormControl("");
 
@@ -44,13 +45,15 @@ export class AddInvoiceComponent implements OnInit {
     this.getContractors();
     // this.getPkwiu();
 
-    this.filtredContractors = this.forContractorControl.valueChanges.pipe(
-      startWith(""),
-      map((value) => (typeof value === "string" ? value : value.name)),
-      map((name) =>
-        name ? this._filterContractor(name) : this.possibleContractors.slice()
-      )
-    );
+    this.filtredContractors = this.addInvoiceForm
+      .get("forContractor")
+      .valueChanges.pipe(
+        startWith(""),
+        map((value) => (typeof value === "string" ? value : value.name)),
+        map((name) =>
+          name ? this._filterContractor(name) : this.possibleContractors.slice()
+        )
+      );
 
     // this.filtredPkwiu = this.pkwiuControl.valueChanges.pipe(
     //   startWith(""),
@@ -72,12 +75,12 @@ export class AddInvoiceComponent implements OnInit {
   }
 
   addInvoiceForm = this.formBuilder.group({
-    forContractor: this.forContractorControl,
-    invoiceDate: this.invoiceDateControl,
-    dueDate: this.dueDateControl,
-    saleDate: this.saleDateControl,
-    dueDays: this.dueDaysControl,
-    netSum: this.netSumControl,
+    forContractor: [""],
+    invoiceDate: [""],
+    dueDate: [""],
+    saleDate: [""],
+    dueDays: [""],
+    netSum: [""],
     items: this.itemsControl,
     // pkwiu: this.pkwiuControl,
   });
@@ -159,7 +162,7 @@ export class AddInvoiceComponent implements OnInit {
       saleDate: this.addInvoiceForm.get("saleDate").value,
       dueDays: Number(this.addInvoiceForm.get("dueDays").value),
       netSum: Number(this.addInvoiceForm.get("netSum").value),
-      items: this.addInvoiceForm.get("items").value,
+      items: this.addInvoiceForm.get("items").value as InvoiceItem[],
       // pkwiu: this.addInvoiceForm.get("pkwiu").value,
     };
 
