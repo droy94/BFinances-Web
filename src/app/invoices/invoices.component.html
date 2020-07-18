@@ -1,12 +1,12 @@
 <div class="table-grid">
   <mat-table [dataSource]="invoices">
-    <ng-container matColumnDef="number">
+    <ng-container matColumnDef="invoiceNo">
       <mat-header-cell *matHeaderCellDef>Numer faktury</mat-header-cell>
       <mat-cell
         *matCellDef="let invoice"
         routerLink="/editInvoice/{{ invoice.id }}"
       >
-        {{ invoice.number }}
+        {{ invoice.invoiceNo }}
       </mat-cell>
     </ng-container>
 
@@ -14,13 +14,6 @@
       <mat-header-cell *matHeaderCellDef>Kontrahent</mat-header-cell>
       <mat-cell *matCellDef="let invoice">
         {{ invoice.forContractor.name }}
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="pkwiu">
-      <mat-header-cell *matHeaderCellDef>Pkwiu</mat-header-cell>
-      <mat-cell *matCellDef="let invoice">
-        {{ invoice.pkwiu.code }}
       </mat-cell>
     </ng-container>
 
@@ -38,14 +31,9 @@
       </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="netAmount">
-      <mat-header-cell *matHeaderCellDef>Kwota netto</mat-header-cell>
-      <mat-cell *matCellDef="let invoice"> {{ invoice.netAmount }} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="vatPercent">
-      <mat-header-cell *matHeaderCellDef>VAT</mat-header-cell>
-      <mat-cell *matCellDef="let invoice"> {{ invoice.vatPercent }} %</mat-cell>
+    <ng-container matColumnDef="netSum">
+      <mat-header-cell *matHeaderCellDef>Suma netto</mat-header-cell>
+      <mat-cell *matCellDef="let invoice"> {{ invoice.netSum }} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>

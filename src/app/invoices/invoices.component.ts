@@ -10,13 +10,11 @@ import { Invoice } from "../model/invoice";
 export class InvoicesComponent implements OnInit {
   invoices: Invoice[];
   columnsToDisplay = [
-    "number",
+    "invoiceNo",
     "forContractor",
     "invoiceDate",
     "dueDate",
-    "netAmount",
-    "vatPercent",
-    "pkwiu",
+    "netSum",
   ];
 
   constructor(private invoiceService: InvoiceService) {}

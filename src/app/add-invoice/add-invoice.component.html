@@ -23,24 +23,6 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Nazwa jednostki</mat-label>
-      <input
-        matInput
-        placeholder="Nazwa jednostki"
-        [formControl]="unitNameControl"
-      />
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Ilość jednostek</mat-label>
-      <input
-        matInput
-        placeholder="Ilość jednostek"
-        [formControl]="numberOfUnitsControl"
-      />
-    </mat-form-field>
-
-    <mat-form-field>
       <mat-label>Data wystawienia faktury</mat-label>
       <input
         matInput
@@ -84,45 +66,69 @@
       ></mat-datepicker-toggle>
       <mat-datepicker #salePicker disabled="false"></mat-datepicker>
     </mat-form-field>
+  </div>
 
-    <mat-form-field>
-      <mat-label>Kwota netto</mat-label>
-      <input
-        matInput
-        placeholder="Kwota netto"
-        [formControl]="netAmountControl"
-      />
-      <span matSuffix>PLN</span>
-    </mat-form-field>
+  <div *ngFor="let item of itemsControl.controls">
+    <ng-container [formGroup]="item">
+      <mat-form-field>
+        <mat-label>Usługa/produkt</mat-label>
+        <input
+          matInput
+          placeholder="Usługa/produkt"
+          formControlName="serviceName"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Kwota netto</mat-label>
+        <input matInput placeholder="Kwota netto" formControlName="netAmount" />
+        <span matSuffix>PLN</span>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Wysokość VAT</mat-label>
+        <input matInput placeholder="Stawka VAT" formControlName="vatPercent" />
+        <span matSuffix>%</span>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Ilość jednostek</mat-label>
+        <input
+          matInput
+          placeholder="Ilość jednostek"
+          formControlName="numberOfUnits"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Nazwa jednostki</mat-label>
+        <input
+          matInput
+          placeholder="Nazwa jednostki"
+          formControlName="unitName"
+        />
+      </mat-form-field>
+      <!-- <mat-form-field>
+        <mat-label>Kod pkwiu</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="Kod pkwiu"
+          [formControl]="pkwiuControl"
+          [matAutocomplete]="autoPkwiu"
+        />
+        <mat-autocomplete
+          #autoPkwiu="matAutocomplete"
+          [displayWith]="displayPkwiu"
+        >
+          <mat-option *ngFor="let pkwiu of filtredPkwiu | async" [value]="pkwiu">
+            {{ pkwiu.code }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field> -->
+    </ng-container>
+  </div>
 
-    <mat-form-field>
-      <mat-label>Wysokość VAT</mat-label>
-      <input
-        matInput
-        placeholder="Stawka VAT"
-        [formControl]="vatPercentControl"
-      />
-      <span matSuffix>%</span>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Kod pkwiu</mat-label>
-      <input
-        type="text"
-        matInput
-        placeholder="Kod pkwiu"
-        [formControl]="pkwiuControl"
-        [matAutocomplete]="autoPkwiu"
-      />
-      <mat-autocomplete
-        #autoPkwiu="matAutocomplete"
-        [displayWith]="displayPkwiu"
-      >
-        <mat-option *ngFor="let pkwiu of filtredPkwiu | async" [value]="pkwiu">
-          {{ pkwiu.code }}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
+  <div>
+    <button (click)="addItem()" mat-button>
+      Dodaj element
+    </button>
   </div>
 
   <div>
