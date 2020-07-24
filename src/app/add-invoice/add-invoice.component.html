@@ -1,6 +1,6 @@
 <form [formGroup]="addInvoiceForm" (ngSubmit)="onSubmit()">
   <div class="form-grid">
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Nazwa nabywcy</mat-label>
       <input
         type="text"
@@ -22,7 +22,7 @@
       </mat-autocomplete>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Data wystawienia faktury</mat-label>
       <input
         matInput
@@ -37,7 +37,7 @@
       <mat-datepicker #invoicePicker disabled="false"></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Data spłaty</mat-label>
       <input
         matInput
@@ -52,7 +52,7 @@
       <mat-datepicker #duePicker disabled="false"></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Data sprzedaży</mat-label>
       <input
         matInput
@@ -66,12 +66,23 @@
       ></mat-datepicker-toggle>
       <mat-datepicker #salePicker disabled="false"></mat-datepicker>
     </mat-form-field>
+    <button
+      *ngIf="invoiceId"
+      type="button"
+      (click)="deleteInvoice()"
+      mat-button
+      color="submit-button"
+    >
+      Usuń fakturę
+    </button>
   </div>
+
   <mat-divider></mat-divider>
+
   <div class="items">
     <div *ngFor="let item of itemsControl.controls" class="item-grid">
       <ng-container [formGroup]="item">
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Usługa/produkt</mat-label>
           <input
             matInput
@@ -79,7 +90,7 @@
             formControlName="serviceName"
           />
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Kwota netto</mat-label>
           <input
             matInput
@@ -88,7 +99,7 @@
           />
           <span matSuffix>PLN</span>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Wysokość VAT</mat-label>
           <input
             matInput
@@ -97,7 +108,7 @@
           />
           <span matSuffix>%</span>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Ilość jednostek</mat-label>
           <input
             matInput
@@ -105,7 +116,7 @@
             formControlName="numberOfUnits"
           />
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Nazwa jednostki</mat-label>
           <input
             matInput
@@ -113,7 +124,7 @@
             formControlName="unitName"
           />
         </mat-form-field>
-        <!-- <mat-form-field>
+        <!-- <mat-form-field appearance="outline">
           <mat-label>Kod pkwiu</mat-label>
           <input
             type="text"
@@ -136,7 +147,7 @@
   </div>
 
   <div>
-    <button type="button" (click)="addItem()" mat-button>
+    <button type="button" (click)="addItem()" mat-button color="submit-button">
       Dodaj element
     </button>
   </div>

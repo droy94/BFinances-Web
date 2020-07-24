@@ -18,6 +18,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./add-invoice.component.scss"],
 })
 export class AddInvoiceComponent implements OnInit {
+  public invoiceId: number;
   possibleContractors: Contractor[] = [];
   // possiblePkwiu: Pkwiu[] = [];
 
@@ -42,6 +43,10 @@ export class AddInvoiceComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.route.paramMap.subscribe((params) => {
+      this.invoiceId = +params.get("id");
+    });
+
     this.getContractors();
     // this.getPkwiu();
 
@@ -150,6 +155,14 @@ export class AddInvoiceComponent implements OnInit {
     this.invoiceService
       .addInvoice(invoice)
       .subscribe(() => alert("Invoice created successfully"));
+  }
+
+  deleteInvoice() {
+    if (this.invoiceId) {
+      this.invoiceService
+        .deleteInvoice(this.invoiceId)
+        .subscribe(() => alert("Invoice deleted successfully"));
+    }
   }
 
   private mapInvoice(): Invoice {
