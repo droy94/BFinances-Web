@@ -162,11 +162,30 @@ export class AddInvoiceComponent implements OnInit {
       saleDate: this.addInvoiceForm.get("saleDate").value,
       dueDays: Number(this.addInvoiceForm.get("dueDays").value),
       netSum: Number(this.addInvoiceForm.get("netSum").value),
-      items: this.addInvoiceForm.get("items").value as InvoiceItem[],
+      items: this.mapItems(),
       // pkwiu: this.addInvoiceForm.get("pkwiu").value,
     };
 
     return invoice;
+  }
+
+  private mapItems(): InvoiceItem[] {
+    let items: InvoiceItem[] = [];
+
+    for (let i = 0; i < this.itemsControl.length; i++) {
+      items.push({
+        id: 0,
+        serviceName: this.itemsControl.at(i).get("serviceName").value,
+        netAmount: Number(this.itemsControl.at(i).get("netAmount").value),
+        vatPercent: Number(this.itemsControl.at(i).get("vatPercent").value),
+        numberOfUnits: Number(
+          this.itemsControl.at(i).get("numberOfUnits").value
+        ),
+        unitName: this.itemsControl.at(i).get("unitName").value,
+        pkwiu: null,
+      } as InvoiceItem);
+    }
+    return items;
   }
 
   fulfillInvoiceForm(invoice: Invoice) {
@@ -177,18 +196,35 @@ export class AddInvoiceComponent implements OnInit {
       saleDate: invoice.saleDate,
       // pkwiu: invoice.pkwiu,
     });
+    invoice.items.forEach((item) => {
+      this.addItem(item);
+    });
   }
 
-  addItem() {
-    const item = new FormGroup({
-      id: new FormControl(""),
-      serviceName: new FormControl(""),
-      netAmount: new FormControl(""),
-      vatPercent: new FormControl(""),
-      numberOfUnits: new FormControl(""),
-      unitName: new FormControl(""),
-      // pkwiu: new FormControl(""),
-    });
+  addItem(invoiceItem: InvoiceItem) {
+    let item: FormGroup;
+
+    if (invoiceItem) {
+      item = new FormGroup({
+        id: new FormControl({ value: invoiceItem.id }),
+        serviceName: new FormControl({ value: invoiceItem.serviceName }),
+        netAmount: new FormControl({ value: invoiceItem.netAmount }),
+        vatPercent: new FormControl({ value: invoiceItem.vatPercent }),
+        numberOfUnits: new FormControl({ value: invoiceItem.numberOfUnits }),
+        unitName: new FormControl({ value: invoiceItem.unitName }),
+        // pkwiu: new FormControl(""),
+      });
+    } else {
+      item = new FormGroup({
+        id: new FormControl(""),
+        serviceName: new FormControl(""),
+        netAmount: new FormControl(""),
+        vatPercent: new FormControl(""),
+        numberOfUnits: new FormControl(""),
+        unitName: new FormControl(""),
+        // pkwiu: new FormControl(""),
+      });
+    }
 
     this.itemsControl.push(item);
   }
