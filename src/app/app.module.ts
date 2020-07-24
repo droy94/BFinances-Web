@@ -12,6 +12,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 import { BreadcrumbModule } from "angular-crumbs";
+import { MatDividerModule } from "@angular/material/divider";
 import {
   MatFormFieldModule,
   MatInputModule,
@@ -40,6 +41,7 @@ import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
     MatNativeDateModule,
     MatIconModule,
     BreadcrumbModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

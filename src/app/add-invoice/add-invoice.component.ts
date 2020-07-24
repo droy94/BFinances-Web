@@ -174,7 +174,7 @@ export class AddInvoiceComponent implements OnInit {
 
     for (let i = 0; i < this.itemsControl.length; i++) {
       items.push({
-        id: 0,
+        id: Number(this.itemsControl.at(i).get("id").value),
         serviceName: this.itemsControl.at(i).get("serviceName").value,
         netAmount: Number(this.itemsControl.at(i).get("netAmount").value),
         vatPercent: Number(this.itemsControl.at(i).get("vatPercent").value),
@@ -202,27 +202,24 @@ export class AddInvoiceComponent implements OnInit {
   }
 
   addItem(invoiceItem: InvoiceItem) {
-    let item: FormGroup;
+    let item = new FormGroup({
+      id: new FormControl(""),
+      serviceName: new FormControl(""),
+      netAmount: new FormControl(""),
+      vatPercent: new FormControl(""),
+      numberOfUnits: new FormControl(""),
+      unitName: new FormControl(""),
+      // pkwiu: new FormControl(""),
+    });
 
     if (invoiceItem) {
-      item = new FormGroup({
-        id: new FormControl({ value: invoiceItem.id }),
-        serviceName: new FormControl({ value: invoiceItem.serviceName }),
-        netAmount: new FormControl({ value: invoiceItem.netAmount }),
-        vatPercent: new FormControl({ value: invoiceItem.vatPercent }),
-        numberOfUnits: new FormControl({ value: invoiceItem.numberOfUnits }),
-        unitName: new FormControl({ value: invoiceItem.unitName }),
-        // pkwiu: new FormControl(""),
-      });
-    } else {
-      item = new FormGroup({
-        id: new FormControl(""),
-        serviceName: new FormControl(""),
-        netAmount: new FormControl(""),
-        vatPercent: new FormControl(""),
-        numberOfUnits: new FormControl(""),
-        unitName: new FormControl(""),
-        // pkwiu: new FormControl(""),
+      item.patchValue({
+        id: invoiceItem.id,
+        serviceName: invoiceItem.serviceName,
+        netAmount: invoiceItem.netAmount,
+        vatPercent: invoiceItem.vatPercent,
+        numberOfUnits: invoiceItem.numberOfUnits,
+        unitName: invoiceItem.unitName,
       });
     }
 

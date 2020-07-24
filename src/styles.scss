@@ -10,14 +10,3 @@ body {
   float: right;
   margin: 8px;
 }
-
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  // grid-template-columns: 1;
-  // width: 70%;
-  grid-gap: 4em;
-  padding-left: 2%;
-  padding-right: 2%;
-  margin-top: 2%;
-}
