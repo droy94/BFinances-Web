@@ -68,15 +68,11 @@ export class AddInvoiceComponent implements OnInit {
     //   )
     // );
 
-    this.route.paramMap.subscribe((params) => {
-      const invoiceId = +params.get("id");
-
-      if (invoiceId) {
-        this.invoiceService
-          .getInvoice(invoiceId)
-          .subscribe((invoice) => this.fulfillInvoiceForm(invoice));
-      }
-    });
+    if (this.invoiceId) {
+      this.invoiceService
+        .getInvoice(this.invoiceId)
+        .subscribe((invoice) => this.fulfillInvoiceForm(invoice));
+    }
   }
 
   addInvoiceForm = this.formBuilder.group({
@@ -128,17 +124,13 @@ export class AddInvoiceComponent implements OnInit {
   // }
 
   onSubmit() {
-    this.route.paramMap.subscribe((params) => {
-      const invoiceId = +params.get("id");
-
-      if (invoiceId) {
-        this.invoiceService
-          .getInvoice(invoiceId)
-          .subscribe(() => this.editInvoice(invoiceId));
-      } else {
-        this.addInvoice();
-      }
-    });
+    if (this.invoiceId) {
+      this.invoiceService
+        .getInvoice(this.invoiceId)
+        .subscribe(() => this.editInvoice(this.invoiceId));
+    } else {
+      this.addInvoice();
+    }
   }
 
   editInvoice(invoiceId: number) {
