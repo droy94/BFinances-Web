@@ -3,6 +3,7 @@
     <ng-container matColumnDef="invoiceNo">
       <mat-header-cell *matHeaderCellDef>Numer faktury</mat-header-cell>
       <mat-cell
+        class="cursor-pointer"
         *matCellDef="let invoice"
         routerLink="/editInvoice/{{ invoice.id }}"
       >

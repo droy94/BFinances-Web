@@ -165,6 +165,14 @@ export class AddInvoiceComponent implements OnInit {
     }
   }
 
+  onDeleteItem(item: FormGroup) {
+    let itemId = item.get("id").value;
+
+    this.invoiceService
+      .deleteItem(itemId)
+      .subscribe(() => this.deleteItem(itemId));
+  }
+
   private mapInvoice(): Invoice {
     const invoice: Invoice = {
       id: 0,
@@ -237,5 +245,11 @@ export class AddInvoiceComponent implements OnInit {
     }
 
     this.itemsControl.push(item);
+  }
+
+  deleteItem(itemId: number) {
+    this.itemsControl.removeAt(
+      this.itemsControl.value.findIndex((item) => item.id === itemId)
+    );
   }
 }

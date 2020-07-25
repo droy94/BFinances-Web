@@ -43,4 +43,8 @@ export class InvoiceService {
   deleteInvoice(id: number) {
     return this.httpClient.delete<Invoice>(`${this.invoicesUrl}/${id}`);
   }
+
+  deleteItem(id: number) {
+    return this.httpClient.delete<Invoice>(`${this.invoicesUrl}/item/${id}`);
+  }
 }
