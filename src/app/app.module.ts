@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, LOCALE_ID } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -20,6 +20,12 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
 } from "@angular/material";
+
+import { registerLocaleData } from "@angular/common";
+import localePl from "@angular/common/locales/pl";
+import localePlExtra from "@angular/common/locales/extra/pl";
+
+registerLocaleData(localePl, "pl-Pl", localePlExtra);
 
 import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
 
@@ -43,7 +49,12 @@ import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
     BreadcrumbModule,
     MatDividerModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LOCALE_ID,
+      useValue: "pl-PL",
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

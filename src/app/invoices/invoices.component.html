@@ -34,7 +34,9 @@
 
     <ng-container matColumnDef="netSum">
       <mat-header-cell *matHeaderCellDef>Suma netto</mat-header-cell>
-      <mat-cell *matCellDef="let invoice"> {{ invoice.netSum }} </mat-cell>
+      <mat-cell *matCellDef="let invoice">
+        {{ invoice.netSum | currency: "PLN":true }}
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
