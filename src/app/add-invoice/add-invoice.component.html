@@ -69,7 +69,7 @@
     <button
       *ngIf="invoiceId"
       type="button"
-      (click)="deleteInvoice()"
+      (click)="onDeleteInvoice()"
       mat-button
       color="submit-button"
     >
@@ -125,7 +125,7 @@
           />
         </mat-form-field>
         <mat-icon class="cursor-pointer" (click)="onDeleteItem(item)"
-          >remove</mat-icon
+          >remove_circle</mat-icon
         >
 
         <!-- <mat-form-field appearance="outline">
@@ -151,7 +151,12 @@
   </div>
 
   <div>
-    <button type="button" (click)="addItem()" mat-button color="submit-button">
+    <button
+      type="button"
+      (click)="onAddItem()"
+      mat-button
+      color="submit-button"
+    >
       Dodaj element
     </button>
   </div>

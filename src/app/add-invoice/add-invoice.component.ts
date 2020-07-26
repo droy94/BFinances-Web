@@ -149,7 +149,7 @@ export class AddInvoiceComponent implements OnInit {
       .subscribe(() => alert("Invoice created successfully"));
   }
 
-  deleteInvoice() {
+  onDeleteInvoice() {
     if (this.invoiceId) {
       this.invoiceService
         .deleteInvoice(this.invoiceId)
@@ -210,11 +210,11 @@ export class AddInvoiceComponent implements OnInit {
       // pkwiu: invoice.pkwiu,
     });
     invoice.items.forEach((item) => {
-      this.addItem(item);
+      this.onAddItem(item);
     });
   }
 
-  addItem(invoiceItem: InvoiceItem) {
+  onAddItem(invoiceItem: InvoiceItem) {
     let item = new FormGroup({
       id: new FormControl(""),
       serviceName: new FormControl(""),
