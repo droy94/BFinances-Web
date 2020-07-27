@@ -19,13 +19,17 @@ import {
   MatAutocompleteModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MAT_DATE_LOCALE,
 } from "@angular/material";
 
 import { registerLocaleData } from "@angular/common";
 import localePl from "@angular/common/locales/pl";
-import localePlExtra from "@angular/common/locales/extra/pl";
+import {
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+  MatMomentDateModule,
+} from "@angular/material-moment-adapter";
 
-registerLocaleData(localePl, "pl-Pl", localePlExtra);
+registerLocaleData(localePl);
 
 import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
 
@@ -48,12 +52,16 @@ import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
     MatIconModule,
     BreadcrumbModule,
     MatDividerModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
   ],
   providers: [
     {
       provide: LOCALE_ID,
-      useValue: "pl-PL",
+      useValue: "pl",
     },
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+    { provide: MAT_DATE_LOCALE, useValue: "pl" },
   ],
   bootstrap: [AppComponent],
 })
