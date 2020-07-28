@@ -80,7 +80,10 @@
   <mat-divider></mat-divider>
 
   <div class="items">
-    <div *ngFor="let item of itemsControl.controls" class="item-grid">
+    <div
+      *ngFor="let item of itemsControl.controls; let i = index"
+      class="item-grid"
+    >
       <ng-container [formGroup]="item">
         <mat-form-field appearance="outline">
           <mat-label>Usługa/produkt</mat-label>
@@ -90,6 +93,29 @@
             formControlName="serviceName"
           />
         </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Kod pkwiu</mat-label>
+          <input
+            type="text"
+            matInput
+            placeholder="Kod pkwiu"
+            formControlName="pkwiu"
+            [matAutocomplete]="autoPkwiu"
+          />
+          <mat-autocomplete
+            #autoPkwiu="matAutocomplete"
+            [displayWith]="displayPkwiu"
+          >
+            <mat-option
+              *ngFor="let pkwiu of filtredPkwiu[i] | async"
+              [value]="pkwiu"
+            >
+              {{ pkwiu.code }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
         <mat-form-field appearance="outline">
           <mat-label>Kwota netto</mat-label>
           <input
@@ -127,25 +153,6 @@
         <mat-icon class="cursor-pointer" (click)="onDeleteItem(item)"
           >remove_circle</mat-icon
         >
-
-        <!-- <mat-form-field appearance="outline">
-          <mat-label>Kod pkwiu</mat-label>
-          <input
-            type="text"
-            matInput
-            placeholder="Kod pkwiu"
-            [formControl]="pkwiuControl"
-            [matAutocomplete]="autoPkwiu"
-          />
-          <mat-autocomplete
-            #autoPkwiu="matAutocomplete"
-            [displayWith]="displayPkwiu"
-          >
-            <mat-option *ngFor="let pkwiu of filtredPkwiu | async" [value]="pkwiu">
-              {{ pkwiu.code }}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field> -->
       </ng-container>
     </div>
   </div>

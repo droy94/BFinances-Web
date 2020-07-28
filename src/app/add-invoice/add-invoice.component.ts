@@ -2,7 +2,12 @@ import { InvoiceItem } from "./../model/invoiceItem";
 import { PkwiuService } from "../services/pkwiu.service";
 import { Pkwiu } from "../model/pkwiu";
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, FormArray } from "@angular/forms";
+import {
+  FormGroup,
+  FormControl,
+  FormArray,
+  AbstractControl,
+} from "@angular/forms";
 import { FormBuilder } from "@angular/forms";
 import { Contractor } from "../model/contractor";
 import { Observable } from "rxjs";
@@ -20,19 +25,24 @@ import { ActivatedRoute } from "@angular/router";
 export class AddInvoiceComponent implements OnInit {
   public invoiceId: number;
   possibleContractors: Contractor[] = [];
-  // possiblePkwiu: Pkwiu[] = [];
+  possiblePkwiu: Pkwiu[] = [];
 
   filtredContractors: Observable<Contractor[]>;
   // filtredPkwiu: Observable<Pkwiu[]>;
 
-  // forContractorControl = new FormControl("");
-  // invoiceDateControl = new FormControl(null);
-  // dueDateControl = new FormControl(null);
-  // saleDateControl = new FormControl(null);
-  // dueDaysControl = new FormControl(null);
-  // netSumControl = new FormControl(null);
+  filtredPkwiu: Array<Observable<Pkwiu[]>> = [];
+
   itemsControl = new FormArray([]);
-  // pkwiuControl = new FormControl("");
+
+  addInvoiceForm = this.formBuilder.group({
+    forContractor: [""],
+    invoiceDate: [""],
+    dueDate: [""],
+    saleDate: [""],
+    dueDays: [""],
+    netSum: [""],
+    items: this.itemsControl,
+  });
 
   constructor(
     private contractorService: ContractorService,
@@ -48,7 +58,7 @@ export class AddInvoiceComponent implements OnInit {
     });
 
     this.getContractors();
-    // this.getPkwiu();
+    this.getPkwiu();
 
     this.filtredContractors = this.addInvoiceForm
       .get("forContractor")
@@ -60,14 +70,6 @@ export class AddInvoiceComponent implements OnInit {
         )
       );
 
-    // this.filtredPkwiu = this.pkwiuControl.valueChanges.pipe(
-    //   startWith(""),
-    //   map((value) => (typeof value === "string" ? value : value.name)),
-    //   map((name) =>
-    //     name ? this._filterPkwiu(name) : this.possiblePkwiu.slice()
-    //   )
-    // );
-
     if (this.invoiceId) {
       this.invoiceService
         .getInvoice(this.invoiceId)
@@ -75,16 +77,25 @@ export class AddInvoiceComponent implements OnInit {
     }
   }
 
-  addInvoiceForm = this.formBuilder.group({
-    forContractor: [""],
-    invoiceDate: [""],
-    dueDate: [""],
-    saleDate: [""],
-    dueDays: [""],
-    netSum: [""],
-    items: this.itemsControl,
-    // pkwiu: this.pkwiuControl,
-  });
+  addPkwiuFilter(pkwiuField: AbstractControl) {
+    // let pkwiu = this.itemsControl.at(i).get("pkwiu");
+
+    this.filtredPkwiu.push(
+      pkwiuField.valueChanges.pipe(
+        startWith(""),
+        map((value) => (typeof value === "string" ? value : value.name)),
+        map((name) =>
+          name ? this._filterPkwiu(name) : this.possiblePkwiu.slice()
+        )
+      )
+    );
+  }
+
+  removePkwiuFilter(index: number) {
+    // let pkwiu = this.itemsControl.at(i).get("pkwiu");
+
+    this.filtredPkwiu.splice(index, 1);
+  }
 
   displayContractor(contractor: Contractor): string {
     return contractor && contractor.name ? contractor.name : "";
@@ -103,13 +114,13 @@ export class AddInvoiceComponent implements OnInit {
     );
   }
 
-  // private _filterPkwiu(code: string): Pkwiu[] {
-  //   const filterValue = code.toLocaleLowerCase();
+  private _filterPkwiu(code: string): Pkwiu[] {
+    const filterValue = code.toLocaleLowerCase();
 
-  //   return this.possiblePkwiu.filter(
-  //     (pkwiu) => pkwiu.code.toLocaleLowerCase().indexOf(filterValue) === 0
-  //   );
-  // }
+    return this.possiblePkwiu.filter(
+      (pkwiu) => pkwiu.code.toLocaleLowerCase().indexOf(filterValue) === 0
+    );
+  }
 
   getContractors() {
     this.contractorService
@@ -117,11 +128,11 @@ export class AddInvoiceComponent implements OnInit {
       .subscribe((contractors) => (this.possibleContractors = contractors));
   }
 
-  // getPkwiu() {
-  //   this.pkwiuService
-  //     .getPkwiu()
-  //     .subscribe((pkwiu) => (this.possiblePkwiu = pkwiu));
-  // }
+  getPkwiu() {
+    this.pkwiuService
+      .getPkwiu()
+      .subscribe((pkwiu) => (this.possiblePkwiu = pkwiu));
+  }
 
   onSubmit() {
     if (this.invoiceId) {
@@ -158,11 +169,10 @@ export class AddInvoiceComponent implements OnInit {
   }
 
   onDeleteItem(item: FormGroup) {
-    let itemId = item.get("id").value;
+    let index = this.itemsControl.controls.indexOf(item);
+    this.itemsControl.removeAt(index);
 
-    this.itemsControl.removeAt(
-      this.itemsControl.value.findIndex((item) => item.id === itemId)
-    );
+    this.removePkwiuFilter(index);
   }
 
   private mapInvoice(): Invoice {
@@ -176,7 +186,6 @@ export class AddInvoiceComponent implements OnInit {
       dueDays: Number(this.addInvoiceForm.get("dueDays").value),
       netSum: Number(this.addInvoiceForm.get("netSum").value),
       items: this.mapItems(),
-      // pkwiu: this.addInvoiceForm.get("pkwiu").value,
     };
 
     return invoice;
@@ -195,7 +204,7 @@ export class AddInvoiceComponent implements OnInit {
           this.itemsControl.at(i).get("numberOfUnits").value
         ),
         unitName: this.itemsControl.at(i).get("unitName").value,
-        pkwiu: null,
+        pkwiu: this.itemsControl.at(i).get("pkwiu").value,
       } as InvoiceItem);
     }
     return items;
@@ -207,7 +216,6 @@ export class AddInvoiceComponent implements OnInit {
       invoiceDate: invoice.invoiceDate,
       dueDate: invoice.dueDate,
       saleDate: invoice.saleDate,
-      // pkwiu: invoice.pkwiu,
     });
     invoice.items.forEach((item) => {
       this.onAddItem(item);
@@ -222,7 +230,7 @@ export class AddInvoiceComponent implements OnInit {
       vatPercent: new FormControl(""),
       numberOfUnits: new FormControl(""),
       unitName: new FormControl(""),
-      // pkwiu: new FormControl(""),
+      pkwiu: new FormControl(""),
     });
 
     if (invoiceItem) {
@@ -233,9 +241,12 @@ export class AddInvoiceComponent implements OnInit {
         vatPercent: invoiceItem.vatPercent,
         numberOfUnits: invoiceItem.numberOfUnits,
         unitName: invoiceItem.unitName,
+        pkwiu: invoiceItem.pkwiu,
       });
     }
 
     this.itemsControl.push(item);
+
+    this.addPkwiuFilter(item.get("pkwiu"));
   }
 }
