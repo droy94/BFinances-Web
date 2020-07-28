@@ -26,12 +26,8 @@ export class AddInvoiceComponent implements OnInit {
   public invoiceId: number;
   possibleContractors: Contractor[] = [];
   possiblePkwiu: Pkwiu[] = [];
-
   filtredContractors: Observable<Contractor[]>;
-  // filtredPkwiu: Observable<Pkwiu[]>;
-
   filtredPkwiu: Array<Observable<Pkwiu[]>> = [];
-
   itemsControl = new FormArray([]);
 
   addInvoiceForm = this.formBuilder.group({
@@ -78,8 +74,6 @@ export class AddInvoiceComponent implements OnInit {
   }
 
   addPkwiuFilter(pkwiuField: AbstractControl) {
-    // let pkwiu = this.itemsControl.at(i).get("pkwiu");
-
     this.filtredPkwiu.push(
       pkwiuField.valueChanges.pipe(
         startWith(""),
@@ -92,8 +86,6 @@ export class AddInvoiceComponent implements OnInit {
   }
 
   removePkwiuFilter(index: number) {
-    // let pkwiu = this.itemsControl.at(i).get("pkwiu");
-
     this.filtredPkwiu.splice(index, 1);
   }
 
@@ -246,7 +238,6 @@ export class AddInvoiceComponent implements OnInit {
     }
 
     this.itemsControl.push(item);
-
     this.addPkwiuFilter(item.get("pkwiu"));
   }
 }
