@@ -15,7 +15,7 @@ import { map, startWith } from "rxjs/operators";
 import { ContractorService } from "../services/contractor.service";
 import { Invoice } from "../model/invoice";
 import { InvoiceService } from "../services/invoice.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-add-invoice",
@@ -45,7 +45,8 @@ export class AddInvoiceComponent implements OnInit {
     private pkwiuService: PkwiuService,
     private formBuilder: FormBuilder,
     private invoiceService: InvoiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -156,14 +157,13 @@ export class AddInvoiceComponent implements OnInit {
     if (this.invoiceId) {
       this.invoiceService
         .deleteInvoice(this.invoiceId)
-        .subscribe(() => alert("Invoice deleted successfully"));
+        .subscribe(() => this.router.navigate(["/invoices"]));
     }
   }
 
   onDeleteItem(item: FormGroup) {
     let index = this.itemsControl.controls.indexOf(item);
     this.itemsControl.removeAt(index);
-
     this.removePkwiuFilter(index);
   }
 
