@@ -66,6 +66,17 @@
       ></mat-datepicker-toggle>
       <mat-datepicker #salePicker disabled="false"></mat-datepicker>
     </mat-form-field>
+
+    <button
+      *ngIf="invoiceId"
+      type="button"
+      (click)="onGenerateInvoice()"
+      mat-button
+      color="submit-button"
+    >
+      Generuj pdf
+    </button>
+
     <button
       *ngIf="invoiceId"
       type="button"
@@ -150,9 +161,15 @@
             formControlName="unitName"
           />
         </mat-form-field>
-        <mat-icon class="cursor-pointer" (click)="onDeleteItem(item)"
-          >remove_circle</mat-icon
+        <button
+          *ngIf="invoiceId"
+          type="button"
+          (click)="onDeleteItem(item)"
+          mat-button
+          color="submit-button"
         >
+          Usuń
+        </button>
       </ng-container>
     </div>
   </div>

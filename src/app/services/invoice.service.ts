@@ -14,6 +14,13 @@ export class InvoiceService {
       "Content-Type": "application/json",
     }),
   };
+
+  pdfOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/pdf",
+    }),
+  };
+
   constructor(private httpClient: HttpClient) {}
 
   getInvoices(): Observable<Invoice[]> {
@@ -42,5 +49,11 @@ export class InvoiceService {
 
   deleteInvoice(id: number) {
     return this.httpClient.delete<Invoice>(`${this.invoicesUrl}/${id}`);
+  }
+
+  generateInvoice(id: number): Observable<any> {
+    return this.httpClient.get(`${this.invoicesUrl}/generate/${id}`, {
+      responseType: "blob",
+    });
   }
 }

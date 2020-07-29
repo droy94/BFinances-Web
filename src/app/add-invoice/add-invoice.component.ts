@@ -167,6 +167,15 @@ export class AddInvoiceComponent implements OnInit {
     this.removePkwiuFilter(index);
   }
 
+  onGenerateInvoice() {
+    this.invoiceService.generateInvoice(this.invoiceId).subscribe((result) => {
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(result);
+      link.download = "invoice";
+      link.click();
+    });
+  }
+
   private mapInvoice(): Invoice {
     const invoice: Invoice = {
       id: 0,

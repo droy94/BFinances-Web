@@ -7,10 +7,10 @@
 
 .item-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr) 5%;
+  grid-template-columns: repeat(6, 1fr) 7%;
   // grid-template-columns: 1;
   // width: 70%;
-  grid-gap: 4em;
+  grid-gap: 1em;
   padding-left: 2%;
   padding-right: 2%;
 }
@@ -21,10 +21,10 @@
 
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(4, 15%) 10%;
+  grid-template-columns: repeat(4, 15%) repeat(2, 10%);
   // grid-template-columns: 1;
   // width: 70%;
-  grid-gap: 4em;
+  grid-gap: 1em;
   padding-left: 2%;
   padding-right: 2%;
   margin-top: 2%;
