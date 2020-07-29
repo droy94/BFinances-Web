@@ -37,6 +37,7 @@ export class AddInvoiceComponent implements OnInit {
     saleDate: [""],
     dueDays: [""],
     netSum: [""],
+    grossSum: [""],
     items: this.itemsControl,
   });
 
@@ -186,6 +187,7 @@ export class AddInvoiceComponent implements OnInit {
       saleDate: this.addInvoiceForm.get("saleDate").value,
       dueDays: Number(this.addInvoiceForm.get("dueDays").value),
       netSum: Number(this.addInvoiceForm.get("netSum").value),
+      grossSum: Number(this.addInvoiceForm.get("grossSum").value),
       items: this.mapItems(),
     };
 

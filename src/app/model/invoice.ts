@@ -9,5 +9,6 @@ export interface Invoice {
   saleDate: Date;
   dueDays: number;
   netSum: number;
+  grossSum: number;
   items: InvoiceItem[];
 }

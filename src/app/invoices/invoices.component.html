@@ -39,6 +39,13 @@
       </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="grossSum">
+      <mat-header-cell *matHeaderCellDef>Suma brutto</mat-header-cell>
+      <mat-cell *matCellDef="let invoice">
+        {{ invoice.grossSum | currency: "PLN":true }}
+      </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
   </mat-table>
