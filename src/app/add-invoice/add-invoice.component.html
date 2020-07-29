@@ -132,7 +132,7 @@
           <input
             matInput
             placeholder="Kwota netto"
-            formControlName="netAmount"
+            formControlName="netUnitAmount"
           />
           <span matSuffix>PLN</span>
         </mat-form-field>
@@ -162,7 +162,6 @@
           />
         </mat-form-field>
         <button
-          *ngIf="invoiceId"
           type="button"
           (click)="onDeleteItem(item)"
           mat-button

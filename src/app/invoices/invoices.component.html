@@ -33,16 +33,23 @@
     </ng-container>
 
     <ng-container matColumnDef="netSum">
-      <mat-header-cell *matHeaderCellDef>Suma netto</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Netto</mat-header-cell>
       <mat-cell *matCellDef="let invoice">
         {{ invoice.netSum | currency: "PLN":true }}
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="grossSum">
-      <mat-header-cell *matHeaderCellDef>Suma brutto</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Brutto</mat-header-cell>
       <mat-cell *matCellDef="let invoice">
         {{ invoice.grossSum | currency: "PLN":true }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="vatSum">
+      <mat-header-cell *matHeaderCellDef>VAT</mat-header-cell>
+      <mat-cell *matCellDef="let invoice">
+        {{ invoice.vatSum | currency: "PLN":true }}
       </mat-cell>
     </ng-container>
 

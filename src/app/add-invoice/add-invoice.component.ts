@@ -36,6 +36,7 @@ export class AddInvoiceComponent implements OnInit {
     dueDate: [""],
     saleDate: [""],
     dueDays: [""],
+    vatSum: [""],
     netSum: [""],
     grossSum: [""],
     items: this.itemsControl,
@@ -186,6 +187,7 @@ export class AddInvoiceComponent implements OnInit {
       dueDate: this.addInvoiceForm.get("dueDate").value,
       saleDate: this.addInvoiceForm.get("saleDate").value,
       dueDays: Number(this.addInvoiceForm.get("dueDays").value),
+      vatSum: Number(this.addInvoiceForm.get("vatSum").value),
       netSum: Number(this.addInvoiceForm.get("netSum").value),
       grossSum: Number(this.addInvoiceForm.get("grossSum").value),
       items: this.mapItems(),
@@ -201,8 +203,13 @@ export class AddInvoiceComponent implements OnInit {
       items.push({
         id: Number(this.itemsControl.at(i).get("id").value),
         serviceName: this.itemsControl.at(i).get("serviceName").value,
-        netAmount: Number(this.itemsControl.at(i).get("netAmount").value),
+        netUnitAmount: Number(
+          this.itemsControl.at(i).get("netUnitAmount").value
+        ),
         vatPercent: Number(this.itemsControl.at(i).get("vatPercent").value),
+        netSum: Number(this.itemsControl.at(i).get("netSum").value),
+        vatAmountSum: Number(this.itemsControl.at(i).get("vatAmountSum").value),
+        grossSum: Number(this.itemsControl.at(i).get("grossSum").value),
         numberOfUnits: Number(
           this.itemsControl.at(i).get("numberOfUnits").value
         ),
@@ -229,7 +236,10 @@ export class AddInvoiceComponent implements OnInit {
     let item = new FormGroup({
       id: new FormControl(""),
       serviceName: new FormControl(""),
-      netAmount: new FormControl(""),
+      netUnitAmount: new FormControl(""),
+      netSum: new FormControl(""),
+      vatAmountSum: new FormControl(""),
+      grossSum: new FormControl(""),
       vatPercent: new FormControl(""),
       numberOfUnits: new FormControl(""),
       unitName: new FormControl(""),
@@ -240,7 +250,10 @@ export class AddInvoiceComponent implements OnInit {
       item.patchValue({
         id: invoiceItem.id,
         serviceName: invoiceItem.serviceName,
-        netAmount: invoiceItem.netAmount,
+        netSum: invoiceItem.netSum,
+        vatAmountSum: invoiceItem.vatAmountSum,
+        grossSum: invoiceItem.grossSum,
+        netUnitAmount: invoiceItem.netUnitAmount,
         vatPercent: invoiceItem.vatPercent,
         numberOfUnits: invoiceItem.numberOfUnits,
         unitName: invoiceItem.unitName,

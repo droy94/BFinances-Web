@@ -8,6 +8,7 @@ export interface Invoice {
   dueDate: Date;
   saleDate: Date;
   dueDays: number;
+  vatSum: number;
   netSum: number;
   grossSum: number;
   items: InvoiceItem[];
