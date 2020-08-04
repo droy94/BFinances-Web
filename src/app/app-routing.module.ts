@@ -1,3 +1,4 @@
+import { ExpensesComponent } from "./expenses/expenses/expenses.component";
 import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
 import { InvoicesComponent } from "./invoices/invoices.component";
 import { NgModule } from "@angular/core";
@@ -20,6 +21,11 @@ const routes: Routes = [
     data: { breadcrumb: "Edycja faktury" },
   },
   { path: "", redirectTo: "/invoices", pathMatch: "full" },
+  {
+    path: "expenses",
+    component: ExpensesComponent,
+    data: { breadcrumb: "Wydatki" },
+  },
 ];
 
 @NgModule({

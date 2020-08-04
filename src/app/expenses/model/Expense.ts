@@ -1,5 +1,5 @@
 import { Contractor } from "../../model/contractor";
-export interface Invoice {
+export interface Expense {
   id: number;
   name: string;
   expenseNo: string;
@@ -8,6 +8,6 @@ export interface Invoice {
   dueDate: Date;
   vatAmount: number;
   netAmount: number;
-  grossSum: number;
+  grossAmount: number;
   vatPercent: number;
 }

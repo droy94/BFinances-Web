@@ -1,1 +1,55 @@
-<p>expenses works!</p>
+<div class="table-grid">
+  <mat-table [dataSource]="expenses">
+    <ng-container matColumnDef="expenseNo">
+      <mat-header-cell *matHeaderCellDef>Numer faktury</mat-header-cell>
+      <mat-cell class="cursor-pointer" *matCellDef="let expense">
+        {{ expense.expenseNo }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="forContractor">
+      <mat-header-cell *matHeaderCellDef>Kontrahent</mat-header-cell>
+      <mat-cell *matCellDef="let expense">
+        {{ expense.forContractor.name }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="expenseDate">
+      <mat-header-cell *matHeaderCellDef>Data wystawienia</mat-header-cell>
+      <mat-cell *matCellDef="let expense">
+        {{ expense.expenseDate | date: "dd/MM/yyyy" }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dueDate">
+      <mat-header-cell *matHeaderCellDef>Termin płatności</mat-header-cell>
+      <mat-cell *matCellDef="let expense">
+        {{ expense.dueDate | date: "dd/MM/yyyy" }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="netAmount">
+      <mat-header-cell *matHeaderCellDef>Netto</mat-header-cell>
+      <mat-cell *matCellDef="let expense">
+        {{ expense.netAmount | currency: "PLN":true }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="grossAmount">
+      <mat-header-cell *matHeaderCellDef>Brutto</mat-header-cell>
+      <mat-cell *matCellDef="let expense">
+        {{ expense.grossAmount | currency: "PLN":true }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="vatAmount">
+      <mat-header-cell *matHeaderCellDef>VAT</mat-header-cell>
+      <mat-cell *matCellDef="let expense">
+        {{ expense.vatAmount | currency: "PLN":true }}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+  </mat-table>
+</div>
