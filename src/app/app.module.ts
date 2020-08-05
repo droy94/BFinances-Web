@@ -33,9 +33,10 @@ registerLocaleData(localePl);
 
 import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
 import { ExpensesComponent } from './expenses/expenses/expenses.component';
+import { AddExpenseComponent } from './expenses/add-expense/add-expense.component';
 
 @NgModule({
-  declarations: [AppComponent, InvoicesComponent, AddInvoiceComponent, ExpensesComponent],
+  declarations: [AppComponent, InvoicesComponent, AddInvoiceComponent, ExpensesComponent, AddExpenseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

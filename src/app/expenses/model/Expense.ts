@@ -3,7 +3,7 @@ export interface Expense {
   id: number;
   name: string;
   expenseNo: string;
-  forContractor: Contractor;
+  fromContractor: Contractor;
   expenseDate: Date;
   dueDate: Date;
   vatAmount: number;

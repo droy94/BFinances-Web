@@ -20,4 +20,28 @@ export class ExpenseService {
   getExpenses(): Observable<Expense[]> {
     return this.httpClient.get<Expense[]>(this.expensesUrl);
   }
+
+  addExpense(expense: Expense) {
+    return this.httpClient.post<Expense>(
+      this.expensesUrl,
+      expense,
+      this.httpOptions
+    );
+  }
+
+  getExpense(id: number): Observable<Expense> {
+    return this.httpClient.get<Expense>(`${this.expensesUrl}/${id}`);
+  }
+
+  editExpense(invoice: Expense, id: number) {
+    return this.httpClient.put<Expense>(
+      `${this.expensesUrl}/${id}`,
+      invoice,
+      this.httpOptions
+    );
+  }
+
+  deleteExpense(id: number) {
+    return this.httpClient.delete<Expense>(`${this.expensesUrl}/${id}`);
+  }
 }
