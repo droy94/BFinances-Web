@@ -1,1 +1,86 @@
-<p>add-expense works!</p>
+<form [formGroup]="addExpenseForm" (ngSubmit)="onSubmit()">
+  <div class="form-grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Nazwa wydatku</mat-label>
+      <input matInput placeholder="Nazwa wydatku" formControlName="name" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Nazwa sprzedawcy</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="Nazwa sprzedawcy"
+        formControlName="fromContractor"
+        [matAutocomplete]="autoContractor"
+      />
+      <mat-autocomplete
+        #autoContractor="matAutocomplete"
+        [displayWith]="displayContractor"
+      >
+        <mat-option
+          *ngFor="let contractor of filtredContractors | async"
+          [value]="contractor"
+        >
+          {{ contractor.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data wydatku</mat-label>
+      <input
+        matInput
+        [matDatepicker]="expensePicker"
+        formControlName="expenseDate"
+        disabled
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="expensePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #expensePicker disabled="false"></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Data spłaty</mat-label>
+      <input
+        matInput
+        [matDatepicker]="duePicker"
+        formControlName="dueDate"
+        disabled
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="duePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #duePicker disabled="false"></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Kwota netto</mat-label>
+      <input matInput placeholder="Kwota netto" formControlName="netAmount" />
+      <span matSuffix>PLN</span>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Wysokość VAT</mat-label>
+      <input matInput placeholder="Stawka VAT" formControlName="vatPercent" />
+      <span matSuffix>%</span>
+    </mat-form-field>
+  </div>
+  <button
+    *ngIf="expenseId"
+    type="button"
+    (click)="onDeleteExpense()"
+    mat-button
+    color="submit-button"
+  >
+    Usuń wydatek
+  </button>
+
+  <div>
+    <button type="submit" mat-button color="submit-button">
+      Zatwierdź
+    </button>
+  </div>
+</form>

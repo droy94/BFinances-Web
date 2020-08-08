@@ -3,6 +3,7 @@ import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
 import { InvoicesComponent } from "./invoices/invoices.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { AddExpenseComponent } from "./expenses/add-expense/add-expense.component";
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
     path: "expenses",
     component: ExpensesComponent,
     data: { breadcrumb: "Wydatki" },
+  },
+  {
+    path: "addExpenses",
+    component: AddExpenseComponent,
+    data: { breadcrumb: "Dodaj wydatek" },
   },
 ];
 

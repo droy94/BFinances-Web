@@ -45,7 +45,7 @@ export class AddExpenseComponent implements OnInit {
     this.getContractors();
 
     this.filtredContractors = this.addExpenseForm
-      .get("forContractor")
+      .get("fromContractor")
       .valueChanges.pipe(
         startWith(""),
         map((value) => (typeof value === "string" ? value : value.name)),
@@ -117,10 +117,10 @@ export class AddExpenseComponent implements OnInit {
       fromContractor: this.addExpenseForm.get("fromContractor").value,
       expenseDate: this.addExpenseForm.get("expenseDate").value,
       dueDate: this.addExpenseForm.get("dueDate").value,
-      vatAmount: this.addExpenseForm.get("vatAmount").value,
-      netAmount: this.addExpenseForm.get("netAmount").value,
-      grossAmount: this.addExpenseForm.get("grossAmount").value,
-      vatPercent: this.addExpenseForm.get("vatPercent").value,
+      vatAmount: Number(this.addExpenseForm.get("vatAmount").value),
+      netAmount: Number(this.addExpenseForm.get("netAmount").value),
+      grossAmount: Number(this.addExpenseForm.get("grossAmount").value),
+      vatPercent: Number(this.addExpenseForm.get("vatPercent").value),
     };
 
     return expense;
