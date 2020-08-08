@@ -1,9 +1,20 @@
 <div class="table-grid">
   <mat-table [dataSource]="expenses">
     <ng-container matColumnDef="expenseNo">
-      <mat-header-cell *matHeaderCellDef>Numer faktury</mat-header-cell>
-      <mat-cell class="cursor-pointer" *matCellDef="let expense">
+      <mat-header-cell *matHeaderCellDef>Numer wydatku</mat-header-cell>
+      <mat-cell
+        class="cursor-pointer"
+        *matCellDef="let expense"
+        routerLink="/editExpense/{{ expense.id }}"
+      >
         {{ expense.expenseNo }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Nazwa wydatku</mat-header-cell>
+      <mat-cell *matCellDef="let expense">
+        {{ expense.name }}
       </mat-cell>
     </ng-container>
 

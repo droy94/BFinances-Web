@@ -11,6 +11,7 @@ export class ExpensesComponent implements OnInit {
   expenses: Expense[];
   columnsToDisplay = [
     "expenseNo",
+    "name",
     "forContractor",
     "expenseDate",
     "dueDate",

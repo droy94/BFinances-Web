@@ -32,6 +32,11 @@ const routes: Routes = [
     component: AddExpenseComponent,
     data: { breadcrumb: "Dodaj wydatek" },
   },
+  {
+    path: "editExpense/:id",
+    component: AddExpenseComponent,
+    data: { breadcrumb: "Edycja wydatku" },
+  },
 ];
 
 @NgModule({
