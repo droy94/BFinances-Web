@@ -1,3 +1,4 @@
+import { DashboardComponent } from "./dashboard/dashboard/dashboard.component";
 import { ExpensesComponent } from "./expenses/expenses/expenses.component";
 import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
 import { InvoicesComponent } from "./invoices/invoices.component";
@@ -36,6 +37,11 @@ const routes: Routes = [
     path: "editExpense/:id",
     component: AddExpenseComponent,
     data: { breadcrumb: "Edycja wydatku" },
+  },
+  {
+    path: "dashboard",
+    component: DashboardComponent,
+    data: { breadcrumb: "Pulpit" },
   },
 ];
 

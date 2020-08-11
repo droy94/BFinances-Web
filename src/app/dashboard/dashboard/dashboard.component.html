@@ -1,0 +1,27 @@
+<div class="table-grid">
+  <mat-table [dataSource]="dashboardData">
+    <ng-container matColumnDef="grossIncome">
+      <mat-header-cell *matHeaderCellDef>Przychód</mat-header-cell>
+      <mat-cell *matCellDef="let item">
+        {{ item.grossIncome | currency: "PLN":true }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="payableVat">
+      <mat-header-cell *matHeaderCellDef>VAT do zapłaty</mat-header-cell>
+      <mat-cell *matCellDef="let item">
+        {{ item.payableVat | currency: "PLN":true }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="payablePit">
+      <mat-header-cell *matHeaderCellDef>PIT do zapłaty</mat-header-cell>
+      <mat-cell *matCellDef="let item">
+        {{ item.payablePit | currency: "PLN":true }}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+  </mat-table>
+</div>
