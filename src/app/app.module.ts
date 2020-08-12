@@ -20,8 +20,9 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MAT_DATE_LOCALE,
+  MatSelectModule,
 } from "@angular/material";
-
+import { FormsModule } from "@angular/forms";
 import { registerLocaleData } from "@angular/common";
 import localePl from "@angular/common/locales/pl";
 import {
@@ -32,12 +33,19 @@ import {
 registerLocaleData(localePl);
 
 import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
-import { ExpensesComponent } from './expenses/expenses/expenses.component';
-import { AddExpenseComponent } from './expenses/add-expense/add-expense.component';
-import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { ExpensesComponent } from "./expenses/expenses/expenses.component";
+import { AddExpenseComponent } from "./expenses/add-expense/add-expense.component";
+import { DashboardComponent } from "./dashboard/dashboard/dashboard.component";
 
 @NgModule({
-  declarations: [AppComponent, InvoicesComponent, AddInvoiceComponent, ExpensesComponent, AddExpenseComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    InvoicesComponent,
+    AddInvoiceComponent,
+    ExpensesComponent,
+    AddExpenseComponent,
+    DashboardComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -57,6 +65,8 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
     MatDividerModule,
     MatDatepickerModule,
     MatMomentDateModule,
+    MatSelectModule,
+    FormsModule,
   ],
   providers: [
     {

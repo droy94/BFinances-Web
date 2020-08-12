@@ -17,8 +17,10 @@ export class ExpenseService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getExpenses(): Observable<Expense[]> {
-    return this.httpClient.get<Expense[]>(this.expensesUrl);
+  getExpenses(month: number, year: number): Observable<Expense[]> {
+    return this.httpClient.get<Expense[]>(
+      `${this.expensesUrl}?month=${month}&year=${year}`
+    );
   }
 
   addExpense(expense: Expense) {

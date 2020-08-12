@@ -8,6 +8,11 @@ import { Expense } from "../model/Expense";
   styleUrls: ["./expenses.component.scss"],
 })
 export class ExpensesComponent implements OnInit {
+  monthDropdownModel: number[];
+  yearDropdownModel: number[];
+  selectedMonth: number;
+  selectedYear: number;
+
   expenses: Expense[];
   columnsToDisplay = [
     "expenseNo",
@@ -23,11 +28,26 @@ export class ExpensesComponent implements OnInit {
 
   ngOnInit() {
     this.getExpenses();
+
+    this.monthDropdownModel = Array.from(Array(12), (_, i) => i + 1);
+    this.yearDropdownModel = [2019, 2020];
   }
 
   getExpenses() {
+    let today = new Date();
+    let month: number;
+    let year: number;
+
+    if (!this.selectedMonth || !this.selectedYear) {
+      month = today.getMonth() + 1;
+      year = today.getFullYear();
+    } else {
+      month = this.selectedMonth;
+      year = this.selectedYear;
+    }
+
     this.expenseService
-      .getExpenses()
+      .getExpenses(month, year)
       .subscribe((expenses) => (this.expenses = expenses));
   }
 }

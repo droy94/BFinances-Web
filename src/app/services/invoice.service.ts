@@ -23,8 +23,10 @@ export class InvoiceService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getInvoices(): Observable<Invoice[]> {
-    return this.httpClient.get<Invoice[]>(this.invoicesUrl);
+  getInvoices(month: number, year: number): Observable<Invoice[]> {
+    return this.httpClient.get<Invoice[]>(
+      `${this.invoicesUrl}?month=${month}&year=${year}`
+    );
   }
 
   getInvoice(id: number): Observable<Invoice> {

@@ -1,3 +1,32 @@
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Miesiąc</mat-label>
+    <mat-select [(ngModel)]="selectedMonth">
+      <mat-option *ngFor="let month of monthDropdownModel" [value]="month">
+        {{ month }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Rok</mat-label>
+    <mat-select [(ngModel)]="selectedYear">
+      <mat-option *ngFor="let year of yearDropdownModel" [value]="year">
+        {{ year }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button
+    type="button"
+    (click)="getInvoices()"
+    mat-button
+    color="submit-button"
+  >
+    Filtruj
+  </button>
+</div>
+
 <div class="table-grid">
   <mat-table [dataSource]="invoices">
     <ng-container matColumnDef="invoiceNo">
