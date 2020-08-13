@@ -91,85 +91,85 @@
   <mat-divider></mat-divider>
 
   <div class="items">
-    <div
-      *ngFor="let item of itemsControl.controls; let i = index"
-      class="item-grid"
-    >
-      <ng-container [formGroup]="item">
-        <mat-form-field appearance="outline">
-          <mat-label>Usługa/produkt</mat-label>
-          <input
-            matInput
-            placeholder="Usługa/produkt"
-            formControlName="serviceName"
-          />
-        </mat-form-field>
+    <div *ngFor="let item of itemsControl.controls; let i = index">
+      <div class="item-grid">
+        <ng-container [formGroup]="item">
+          <mat-form-field appearance="outline">
+            <mat-label>Usługa/produkt</mat-label>
+            <input
+              matInput
+              placeholder="Usługa/produkt"
+              formControlName="serviceName"
+            />
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Kod pkwiu</mat-label>
-          <input
-            type="text"
-            matInput
-            placeholder="Kod pkwiu"
-            formControlName="pkwiu"
-            [matAutocomplete]="autoPkwiu"
-          />
-          <mat-autocomplete
-            #autoPkwiu="matAutocomplete"
-            [displayWith]="displayPkwiu"
-          >
-            <mat-option
-              *ngFor="let pkwiu of filtredPkwiu[i] | async"
-              [value]="pkwiu"
+          <mat-form-field appearance="outline">
+            <mat-label>Kod pkwiu</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="Kod pkwiu"
+              formControlName="pkwiu"
+              [matAutocomplete]="autoPkwiu"
+            />
+            <mat-autocomplete
+              #autoPkwiu="matAutocomplete"
+              [displayWith]="displayPkwiu"
             >
-              {{ pkwiu.code }}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
+              <mat-option
+                *ngFor="let pkwiu of filtredPkwiu[i] | async"
+                [value]="pkwiu"
+              >
+                <span>{{ pkwiu.code }}</span> |
+                <small>{{ pkwiu.name }}</small>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Kwota netto</mat-label>
-          <input
-            matInput
-            placeholder="Kwota netto"
-            formControlName="netUnitAmount"
-          />
-          <span matSuffix>PLN</span>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Wysokość VAT</mat-label>
-          <input
-            matInput
-            placeholder="Stawka VAT"
-            formControlName="vatPercent"
-          />
-          <span matSuffix>%</span>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Ilość jednostek</mat-label>
-          <input
-            matInput
-            placeholder="Ilość jednostek"
-            formControlName="numberOfUnits"
-          />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Nazwa jednostki</mat-label>
-          <input
-            matInput
-            placeholder="Nazwa jednostki"
-            formControlName="unitName"
-          />
-        </mat-form-field>
-        <button
-          type="button"
-          (click)="onDeleteItem(item)"
-          mat-button
-          color="submit-button"
-        >
-          Usuń
-        </button>
-      </ng-container>
+          <mat-form-field appearance="outline">
+            <mat-label>Kwota netto</mat-label>
+            <input
+              matInput
+              placeholder="Kwota netto"
+              formControlName="netUnitAmount"
+            />
+            <span matSuffix>PLN</span>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Wysokość VAT</mat-label>
+            <input
+              matInput
+              placeholder="Stawka VAT"
+              formControlName="vatPercent"
+            />
+            <span matSuffix>%</span>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Ilość jednostek</mat-label>
+            <input
+              matInput
+              placeholder="Ilość jednostek"
+              formControlName="numberOfUnits"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Nazwa jednostki</mat-label>
+            <input
+              matInput
+              placeholder="Nazwa jednostki"
+              formControlName="unitName"
+            />
+          </mat-form-field>
+        </ng-container>
+      </div>
+      <button
+        type="button"
+        (click)="onDeleteItem(item)"
+        mat-button
+        color="submit-button"
+      >
+        Usuń
+      </button>
     </div>
   </div>
 
@@ -182,9 +182,6 @@
     >
       Dodaj element
     </button>
-  </div>
-
-  <div>
     <button type="submit" mat-button color="submit-button">
       Zatwierdź
     </button>

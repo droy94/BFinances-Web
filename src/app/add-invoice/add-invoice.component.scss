@@ -7,7 +7,7 @@
 
 .item-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr) 7%;
+  grid-template-columns: 40% 40% 18%;
   // grid-template-columns: 1;
   // width: 70%;
   grid-gap: 1em;
@@ -21,7 +21,7 @@
 
 .invoice-form-grid {
   display: grid;
-  grid-template-columns: repeat(4, 15%) repeat(2, 10%);
+  grid-template-columns: repeat(4, 24%);
   // grid-template-columns: 1;
   // width: 70%;
   grid-gap: 1em;
