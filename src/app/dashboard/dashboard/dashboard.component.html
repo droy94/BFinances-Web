@@ -21,6 +21,38 @@
       </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="startOfSettlingPeriod">
+      <mat-header-cell *matHeaderCellDef
+        >Początek okresu rozliczeniowego</mat-header-cell
+      >
+      <mat-cell *matCellDef="let item">
+        {{ item.startOfSettlingPeriod | date: "dd/MM/yyyy" }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="endOfSettlingPeriod">
+      <mat-header-cell *matHeaderCellDef
+        >Koniec okresu rozliczeniowego</mat-header-cell
+      >
+      <mat-cell *matCellDef="let item">
+        {{ item.endOfSettlingPeriod | date: "dd/MM/yyyy" }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="vatSettlementDate">
+      <mat-header-cell *matHeaderCellDef>Termin zapłaty VAT</mat-header-cell>
+      <mat-cell *matCellDef="let item">
+        {{ item.vatSettlementDate | date: "dd/MM/yyyy" }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pitSettlementDate">
+      <mat-header-cell *matHeaderCellDef>Termin zapłaty PIT</mat-header-cell>
+      <mat-cell *matCellDef="let item">
+        {{ item.pitSettlementDate | date: "dd/MM/yyyy" }}
+      </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
   </mat-table>

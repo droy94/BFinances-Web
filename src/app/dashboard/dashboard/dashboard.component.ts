@@ -9,7 +9,15 @@ import { Dashboard } from "../model/dashboard";
 })
 export class DashboardComponent implements OnInit {
   dashboardData: Dashboard[];
-  columnsToDisplay = ["grossIncome", "payableVat", "payablePit"];
+  columnsToDisplay = [
+    "grossIncome",
+    "payableVat",
+    "payablePit",
+    "startOfSettlingPeriod",
+    "endOfSettlingPeriod",
+    "vatSettlementDate",
+    "pitSettlementDate",
+  ];
 
   constructor(private dashboardService: DashboardService) {}
 

@@ -22,7 +22,7 @@ const routes: Routes = [
     component: AddInvoiceComponent,
     data: { breadcrumb: "Edycja faktury" },
   },
-  { path: "", redirectTo: "/invoices", pathMatch: "full" },
+  { path: "", redirectTo: "/dashboard", pathMatch: "full" },
   {
     path: "expenses",
     component: ExpensesComponent,
