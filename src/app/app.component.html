@@ -2,7 +2,7 @@
   <img src="assets/img/logo.png" alt="image" width="30px" height="30px" />
   <span>inances</span>
   <div class="navbar">
-    <a mat-button routerLink="/dashboard" color="transparent">Pulpit</a>
+    <a mat-button routerLink="" color="transparent">Pulpit</a>
     <a mat-button routerLink="/invoices" color="transparent">Faktury</a>
     <a mat-button routerLink="/addinvoice" color="transparent">Dodaj fakturę</a>
     <a mat-button routerLink="/expenses" color="transparent">Koszty</a>
@@ -10,18 +10,5 @@
     <a mat-button color="transparent">O nas</a>
   </div>
 </mat-toolbar>
-
-<breadcrumb #parent>
-  <ol class="breadcrumb">
-    <ng-template ngFor let-route [ngForOf]="parent.breadcrumbs">
-      <li *ngIf="!route.terminal" class="breadcrumb-item">
-        <a href="" [routerLink]="[route.url]">{{ route.displayName }}</a>
-      </li>
-      <li *ngIf="route.terminal" class="breadcrumb-item active">
-        {{ route.displayName }}
-      </li>
-    </ng-template>
-  </ol>
-</breadcrumb>
-
+<app-breadcrumb [deliminator]="'/'"></app-breadcrumb>
 <router-outlet></router-outlet>

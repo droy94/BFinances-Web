@@ -11,7 +11,6 @@ import { MatButtonModule } from "@angular/material/button";
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
-import { BreadcrumbModule } from "angular-crumbs";
 import { MatDividerModule } from "@angular/material/divider";
 import {
   MatFormFieldModule,
@@ -36,6 +35,8 @@ import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
 import { ExpensesComponent } from "./expenses/expenses/expenses.component";
 import { AddExpenseComponent } from "./expenses/add-expense/add-expense.component";
 import { DashboardComponent } from "./dashboard/dashboard/dashboard.component";
+import { BreadcrumbModule } from "primeng/breadcrumb";
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { DashboardComponent } from "./dashboard/dashboard/dashboard.component";
     ExpensesComponent,
     AddExpenseComponent,
     DashboardComponent,
+    BreadcrumbComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +69,7 @@ import { DashboardComponent } from "./dashboard/dashboard/dashboard.component";
     MatMomentDateModule,
     MatSelectModule,
     FormsModule,
+    BreadcrumbModule,
   ],
   providers: [
     {

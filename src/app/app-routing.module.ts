@@ -8,40 +8,45 @@ import { AddExpenseComponent } from "./expenses/add-expense/add-expense.componen
 
 const routes: Routes = [
   {
-    path: "invoices",
-    component: InvoicesComponent,
-    data: { breadcrumb: "Faktury" },
-  },
-  {
-    path: "addinvoice",
-    component: AddInvoiceComponent,
-    data: { breadcrumb: "Dodaj fakturę" },
-  },
-  {
-    path: "editInvoice/:id",
-    component: AddInvoiceComponent,
-    data: { breadcrumb: "Edycja faktury" },
-  },
-  { path: "", redirectTo: "/dashboard", pathMatch: "full" },
-  {
-    path: "expenses",
-    component: ExpensesComponent,
-    data: { breadcrumb: "Wydatki" },
-  },
-  {
-    path: "addExpenses",
-    component: AddExpenseComponent,
-    data: { breadcrumb: "Dodaj wydatek" },
-  },
-  {
-    path: "editExpense/:id",
-    component: AddExpenseComponent,
-    data: { breadcrumb: "Edycja wydatku" },
-  },
-  {
-    path: "dashboard",
-    component: DashboardComponent,
-    data: { breadcrumb: "Pulpit" },
+    path: "",
+    data: { breadCrum: "Start" },
+    children: [
+      {
+        path: "",
+        component: DashboardComponent,
+        data: { breadCrum: "Dashboard" },
+      },
+      {
+        path: "invoices",
+        component: InvoicesComponent,
+        data: { breadCrum: "Faktury" },
+      },
+      {
+        path: "addinvoice",
+        component: AddInvoiceComponent,
+        data: { breadCrum: "Dodaj fakturę" },
+      },
+      {
+        path: "editInvoice/:id",
+        component: AddInvoiceComponent,
+        data: { breadCrum: "Edycja faktury" },
+      },
+      {
+        path: "expenses",
+        component: ExpensesComponent,
+        data: { breadCrum: "Wydatki" },
+      },
+      {
+        path: "addExpenses",
+        component: AddExpenseComponent,
+        data: { breadCrum: "Dodaj wydatek" },
+      },
+      {
+        path: "editExpense/:id",
+        component: AddExpenseComponent,
+        data: { breadCrum: "Edycja wydatku" },
+      },
+    ],
   },
 ];
 
