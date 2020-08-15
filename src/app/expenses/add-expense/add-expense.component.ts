@@ -101,14 +101,6 @@ export class AddExpenseComponent implements OnInit {
     }
   }
 
-  editExpense(expenseId: number) {
-    const expense = this.mapExpense();
-
-    this.expenseService
-      .editExpense(expense, expenseId)
-      .subscribe(() => alert("Expense edited successfully"));
-  }
-
   private mapExpense(): Expense {
     const expense: Expense = {
       id: 0,
@@ -131,7 +123,15 @@ export class AddExpenseComponent implements OnInit {
 
     this.expenseService
       .addExpense(expense)
-      .subscribe(() => alert("Expense created successfully"));
+      .subscribe(() => this.router.navigate(["/expenses"]));
+  }
+
+  editExpense(expenseId: number) {
+    const expense = this.mapExpense();
+
+    this.expenseService
+      .editExpense(expense, expenseId)
+      .subscribe(() => this.router.navigate(["/expenses"]));
   }
 
   onDeleteExpense() {

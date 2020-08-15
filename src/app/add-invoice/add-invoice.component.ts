@@ -144,7 +144,7 @@ export class AddInvoiceComponent implements OnInit {
 
     this.invoiceService
       .editInvoice(invoice, invoiceId)
-      .subscribe(() => alert("Invoice edited successfully"));
+      .subscribe(() => this.router.navigate(["/invoices"]));
   }
 
   addInvoice() {
@@ -152,7 +152,7 @@ export class AddInvoiceComponent implements OnInit {
 
     this.invoiceService
       .addInvoice(invoice)
-      .subscribe(() => alert("Invoice created successfully"));
+      .subscribe(() => this.router.navigate(["/invoices"]));
   }
 
   onDeleteInvoice() {
