@@ -1,18 +1,17 @@
 .mat-submit-button {
   background-color: purple;
   color: #fff;
-  margin-top: 3%;
-  margin-left: 1%;
+  // margin-top: 3%;
+  margin-left: 2%;
 }
 
 .item-grid {
   display: grid;
   grid-template-columns: 40% 40% 18%;
-  // grid-template-columns: 1;
-  // width: 70%;
-  grid-gap: 1em;
+  grid-gap: 1%;
   padding-left: 2%;
   padding-right: 2%;
+  margin-top: 2%;
 }
 
 .items {
@@ -22,11 +21,21 @@
 .invoice-form-grid {
   display: grid;
   grid-template-columns: repeat(4, 24%);
-  // grid-template-columns: 1;
-  // width: 70%;
   grid-gap: 1em;
   padding-left: 2%;
   padding-right: 2%;
   margin-top: 2%;
-  margin-bottom: 2%;
+}
+
+.delete-item-button {
+  margin-bottom: 1%;
+}
+
+.form-button {
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.edit-button {
+  margin-bottom: 1%;
 }

@@ -1,4 +1,4 @@
-<div>
+<div class="dateDropdown">
   <mat-form-field appearance="fill">
     <mat-label>Miesiąc</mat-label>
     <mat-select [(ngModel)]="selectedMonth">
@@ -26,6 +26,8 @@
     Filtruj
   </button>
 </div>
+
+<mat-divider></mat-divider>
 
 <div class="table-grid">
   <mat-table [dataSource]="expenses">

@@ -1,5 +1,5 @@
 <form [formGroup]="addExpenseForm" (ngSubmit)="onSubmit()">
-  <div class="form-grid">
+  <div class="expense-form-grid">
     <mat-form-field appearance="outline">
       <mat-label>Nazwa wydatku</mat-label>
       <input matInput placeholder="Nazwa wydatku" formControlName="name" />
@@ -59,7 +59,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Kwota netto</mat-label>
       <input matInput placeholder="Kwota netto" formControlName="netAmount" />
-      <span matSuffix>PLN</span>
+      <span matSuffix>zł</span>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
@@ -68,19 +68,19 @@
       <span matSuffix>%</span>
     </mat-form-field>
   </div>
-  <button
-    *ngIf="expenseId"
-    type="button"
-    (click)="onDeleteExpense()"
-    mat-button
-    color="submit-button"
-  >
-    Usuń wydatek
-  </button>
+  <div class="edit-button">
+    <button
+      *ngIf="expenseId"
+      type="button"
+      (click)="onDeleteExpense()"
+      mat-button
+      color="submit-button"
+    >
+      Usuń wydatek
+    </button>
 
-  <div>
     <button type="submit" mat-button color="submit-button">
-      Zatwierdź
+      Zapisz
     </button>
   </div>
 </form>

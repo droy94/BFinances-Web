@@ -1,0 +1,25 @@
+.mat-row:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.mat-row:nth-child(odd) {
+  background-color: #e4f0ec;
+}
+
+.dateDropdown {
+  padding-left: 1%;
+  padding-right: 1%;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  font-size: 11px;
+}
+
+.mat-submit-button {
+  background-color: purple;
+  color: #fff;
+  // margin-top: 2%;
+  margin-left: 1%;
+  width: 6% !important;
+  height: 4% !important;
+  min-width: unset !important;
+}

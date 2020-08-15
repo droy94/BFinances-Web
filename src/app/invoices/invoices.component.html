@@ -1,88 +1,92 @@
 <div>
-  <mat-form-field appearance="fill">
-    <mat-label>Miesiąc</mat-label>
-    <mat-select [(ngModel)]="selectedMonth">
-      <mat-option *ngFor="let month of monthDropdownModel" [value]="month">
-        {{ month }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <div class="dateDropdown">
+    <mat-form-field appearance="fill">
+      <mat-label>Miesiąc</mat-label>
+      <mat-select [(ngModel)]="selectedMonth">
+        <mat-option *ngFor="let month of monthDropdownModel" [value]="month">
+          {{ month }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Rok</mat-label>
-    <mat-select [(ngModel)]="selectedYear">
-      <mat-option *ngFor="let year of yearDropdownModel" [value]="year">
-        {{ year }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Rok</mat-label>
+      <mat-select [(ngModel)]="selectedYear">
+        <mat-option *ngFor="let year of yearDropdownModel" [value]="year">
+          {{ year }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <button
-    type="button"
-    (click)="getInvoices()"
-    mat-button
-    color="submit-button"
-  >
-    Filtruj
-  </button>
-</div>
+    <button
+      type="button"
+      (click)="getInvoices()"
+      mat-button
+      color="submit-button"
+    >
+      Filtruj
+    </button>
+  </div>
 
-<div class="table-grid">
-  <mat-table [dataSource]="invoices">
-    <ng-container matColumnDef="invoiceNo">
-      <mat-header-cell *matHeaderCellDef>Numer faktury</mat-header-cell>
-      <mat-cell
-        class="cursor-pointer"
-        *matCellDef="let invoice"
-        routerLink="/editInvoice/{{ invoice.id }}"
-      >
-        {{ invoice.invoiceNo }}
-      </mat-cell>
-    </ng-container>
+  <mat-divider></mat-divider>
 
-    <ng-container matColumnDef="forContractor">
-      <mat-header-cell *matHeaderCellDef>Kontrahent</mat-header-cell>
-      <mat-cell *matCellDef="let invoice">
-        {{ invoice.forContractor.name }}
-      </mat-cell>
-    </ng-container>
+  <div class="table-grid">
+    <mat-table [dataSource]="invoices">
+      <ng-container matColumnDef="invoiceNo">
+        <mat-header-cell *matHeaderCellDef>Numer faktury</mat-header-cell>
+        <mat-cell
+          class="cursor-pointer"
+          *matCellDef="let invoice"
+          routerLink="/editInvoice/{{ invoice.id }}"
+        >
+          {{ invoice.invoiceNo }}
+        </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="invoiceDate">
-      <mat-header-cell *matHeaderCellDef>Data wystawienia</mat-header-cell>
-      <mat-cell *matCellDef="let invoice">
-        {{ invoice.invoiceDate | date: "dd/MM/yyyy" }}
-      </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="forContractor">
+        <mat-header-cell *matHeaderCellDef>Kontrahent</mat-header-cell>
+        <mat-cell *matCellDef="let invoice">
+          {{ invoice.forContractor.name }}
+        </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="dueDate">
-      <mat-header-cell *matHeaderCellDef>Termin płatności</mat-header-cell>
-      <mat-cell *matCellDef="let invoice">
-        {{ invoice.dueDate | date: "dd/MM/yyyy" }}
-      </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="invoiceDate">
+        <mat-header-cell *matHeaderCellDef>Data wystawienia</mat-header-cell>
+        <mat-cell *matCellDef="let invoice">
+          {{ invoice.invoiceDate | date: "dd/MM/yyyy" }}
+        </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="netSum">
-      <mat-header-cell *matHeaderCellDef>Netto</mat-header-cell>
-      <mat-cell *matCellDef="let invoice">
-        {{ invoice.netSum | currency: "PLN":true }}
-      </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="dueDate">
+        <mat-header-cell *matHeaderCellDef>Termin płatności</mat-header-cell>
+        <mat-cell *matCellDef="let invoice">
+          {{ invoice.dueDate | date: "dd/MM/yyyy" }}
+        </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="grossSum">
-      <mat-header-cell *matHeaderCellDef>Brutto</mat-header-cell>
-      <mat-cell *matCellDef="let invoice">
-        {{ invoice.grossSum | currency: "PLN":true }}
-      </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="netSum">
+        <mat-header-cell *matHeaderCellDef>Netto</mat-header-cell>
+        <mat-cell *matCellDef="let invoice">
+          {{ invoice.netSum | currency: "PLN":true }}
+        </mat-cell>
+      </ng-container>
 
-    <ng-container matColumnDef="vatSum">
-      <mat-header-cell *matHeaderCellDef>VAT</mat-header-cell>
-      <mat-cell *matCellDef="let invoice">
-        {{ invoice.vatSum | currency: "PLN":true }}
-      </mat-cell>
-    </ng-container>
+      <ng-container matColumnDef="grossSum">
+        <mat-header-cell *matHeaderCellDef>Brutto</mat-header-cell>
+        <mat-cell *matCellDef="let invoice">
+          {{ invoice.grossSum | currency: "PLN":true }}
+        </mat-cell>
+      </ng-container>
 
-    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-    <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
-  </mat-table>
+      <ng-container matColumnDef="vatSum">
+        <mat-header-cell *matHeaderCellDef>VAT</mat-header-cell>
+        <mat-cell *matCellDef="let invoice">
+          {{ invoice.vatSum | currency: "PLN":true }}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+    </mat-table>
+  </div>
 </div>
