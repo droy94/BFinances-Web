@@ -6,8 +6,8 @@
 
 .expense-form-grid {
   display: grid;
-  grid-template-columns: repeat(4, 24%);
-  grid-gap: 1em;
+  grid-template-columns: 50% 30% 18%;
+  grid-gap: 1%;
   padding-left: 2%;
   padding-right: 2%;
   margin-top: 2%;
