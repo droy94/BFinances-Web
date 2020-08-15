@@ -1,9 +1,9 @@
-import { DashboardComponent } from "./dashboard/dashboard/dashboard.component";
-import { ExpensesComponent } from "./expenses/expenses/expenses.component";
-import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
-import { InvoicesComponent } from "./invoices/invoices.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { InvoicesComponent } from "./invoices/invoices/invoices.component";
+import { AddInvoiceComponent } from "./invoices/add-invoice/add-invoice.component";
+import { ExpensesComponent } from "./expenses/expenses/expenses.component";
 import { AddExpenseComponent } from "./expenses/add-expense/add-expense.component";
 
 const routes: Routes = [

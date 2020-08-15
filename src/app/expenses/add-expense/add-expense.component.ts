@@ -1,4 +1,4 @@
-import { ExpenseService } from "./../services/expense.service";
+import { ExpenseService } from "../../services/expense.service";
 import { Component, OnInit } from "@angular/core";
 import { Contractor } from "src/app/model/contractor";
 import { Observable } from "rxjs/internal/Observable";
@@ -6,7 +6,7 @@ import { FormBuilder } from "@angular/forms";
 import { ContractorService } from "src/app/services/contractor.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { startWith, map } from "rxjs/operators";
-import { Expense } from "../model/expense";
+import { Expense } from "../../model/expense";
 
 @Component({
   selector: "app-add-expense",

@@ -1,6 +1,3 @@
-import { InvoiceItem } from "./../model/invoiceItem";
-import { PkwiuService } from "../services/pkwiu.service";
-import { Pkwiu } from "../model/pkwiu";
 import { Component, OnInit } from "@angular/core";
 import {
   FormGroup,
@@ -9,13 +6,16 @@ import {
   AbstractControl,
 } from "@angular/forms";
 import { FormBuilder } from "@angular/forms";
-import { Contractor } from "../model/contractor";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
-import { ContractorService } from "../services/contractor.service";
-import { Invoice } from "../model/invoice";
-import { InvoiceService } from "../services/invoice.service";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Contractor } from "src/app/model/contractor";
+import { ContractorService } from "src/app/services/contractor.service";
+import { InvoiceService } from "src/app/services/invoice.service";
+import { Pkwiu } from "src/app/model/pkwiu";
+import { PkwiuService } from "src/app/services/pkwiu.service";
+import { Invoice } from "src/app/model/invoice";
+import { InvoiceItem } from "src/app/model/invoiceItem";
 
 @Component({
   selector: "app-add-invoice",

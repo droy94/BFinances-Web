@@ -1,4 +1,4 @@
-import { Contractor } from "../../model/contractor";
+import { Contractor } from "./contractor";
 export interface Expense {
   id: number;
   name: string;

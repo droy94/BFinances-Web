@@ -4,7 +4,6 @@ import { NgModule, LOCALE_ID } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { InvoicesComponent } from "./invoices/invoices.component";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
@@ -31,12 +30,13 @@ import {
 
 registerLocaleData(localePl);
 
-import { AddInvoiceComponent } from "./add-invoice/add-invoice.component";
 import { ExpensesComponent } from "./expenses/expenses/expenses.component";
 import { AddExpenseComponent } from "./expenses/add-expense/add-expense.component";
-import { DashboardComponent } from "./dashboard/dashboard/dashboard.component";
 import { BreadcrumbModule } from "primeng/breadcrumb";
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
+import { InvoicesComponent } from "./invoices/invoices/invoices.component";
+import { AddInvoiceComponent } from "./invoices/add-invoice/add-invoice.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
 
 @NgModule({
   declarations: [
